@@ -1,0 +1,375 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TikTok Engagement Bot",
+    "description": "The Zefoy API allows users to automate interactions on TikTok, providing tools for gaining likes, followers, shares, and views quickly. It is designed to help increase engagement metrics for TikTok accounts through bot-managed activities, making it a useful resource for users looking to boost their social media presence on the platform.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://github.com/xtekky/zefoy"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://zefoy.com",
+      "description": "Zefoy API Server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Engagement",
+      "description": "TikTok engagement automation operations"
+    }
+  ],
+  "paths": {
+    "/api/engagement": {
+      "post": {
+        "tags": [
+          "Engagement"
+        ],
+        "summary": "Boost TikTok engagement metrics",
+        "description": "Automate TikTok interactions to increase likes, followers, shares, and views for a specified TikTok account or content",
+        "operationId": "boostEngagement",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EngagementRequest"
+              },
+              "examples": {
+                "likes": {
+                  "summary": "Request likes",
+                  "value": {
+                    "url": "https://www.tiktok.com/@username/video/1234567890",
+                    "action": "likes",
+                    "quantity": 100
+                  }
+                },
+                "followers": {
+                  "summary": "Request followers",
+                  "value": {
+                    "url": "https://www.tiktok.com/@username",
+                    "action": "followers",
+                    "quantity": 50
+                  }
+                },
+                "views": {
+                  "summary": "Request views",
+                  "value": {
+                    "url": "https://www.tiktok.com/@username/video/1234567890",
+                    "action": "views",
+                    "quantity": 1000
+                  }
+                },
+                "shares": {
+                  "summary": "Request shares",
+                  "value": {
+                    "url": "https://www.tiktok.com/@username/video/1234567890",
+                    "action": "shares",
+                    "quantity": 25
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Engagement request successfully processed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EngagementResponse"
+                },
+                "examples": {
+                  "success": {
+                    "summary": "Successful response",
+                    "value": {
+                      "status": "success",
+                      "message": "Engagement boost initiated",
+                      "data": {
+                        "action": "likes",
+                        "quantity": 100,
+                        "url": "https://www.tiktok.com/@username/video/1234567890",
+                        "estimated_completion": "2-5 minutes"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "invalid_url": {
+                    "summary": "Invalid TikTok URL",
+                    "value": {
+                      "status": "error",
+                      "message": "Invalid TikTok URL provided",
+                      "code": "INVALID_URL"
+                    }
+                  },
+                  "invalid_action": {
+                    "summary": "Invalid action type",
+                    "value": {
+                      "status": "error",
+                      "message": "Action must be one of: likes, followers, shares, views",
+                      "code": "INVALID_ACTION"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Missing or invalid session ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "unauthorized": {
+                    "summary": "Missing authentication",
+                    "value": {
+                      "status": "error",
+                      "message": "Valid session ID is required",
+                      "code": "UNAUTHORIZED"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "rate_limit": {
+                    "summary": "Too many requests",
+                    "value": {
+                      "status": "error",
+                      "message": "Rate limit exceeded. Please try again later",
+                      "code": "RATE_LIMIT_EXCEEDED",
+                      "retry_after": 300
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "server_error": {
+                    "summary": "Server error",
+                    "value": {
+                      "status": "error",
+                      "message": "An internal server error occurred",
+                      "code": "INTERNAL_ERROR"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable - Cloudflare verification required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "cloudflare": {
+                    "summary": "Cloudflare protection active",
+                    "value": {
+                      "status": "error",
+                      "message": "Cloudflare verification required. Please update session cookies",
+                      "code": "CLOUDFLARE_VERIFICATION_REQUIRED"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "sessionId": []
+          },
+          {
+            "cloudflare": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "EngagementRequest": {
+        "type": "object",
+        "required": [
+          "url",
+          "action"
+        ],
+        "properties": {
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "TikTok profile URL or video URL to boost engagement",
+            "example": "https://www.tiktok.com/@username/video/1234567890"
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "likes",
+              "followers",
+              "shares",
+              "views"
+            ],
+            "description": "Type of engagement to boost",
+            "example": "likes"
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10000,
+            "description": "Number of engagements to add (optional, defaults to maximum available)",
+            "example": 100
+          }
+        }
+      },
+      "EngagementResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "success",
+              "pending"
+            ],
+            "description": "Status of the engagement request",
+            "example": "success"
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable message about the request",
+            "example": "Engagement boost initiated"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string",
+                "enum": [
+                  "likes",
+                  "followers",
+                  "shares",
+                  "views"
+                ],
+                "description": "Type of engagement requested",
+                "example": "likes"
+              },
+              "quantity": {
+                "type": "integer",
+                "description": "Number of engagements being processed",
+                "example": 100
+              },
+              "url": {
+                "type": "string",
+                "format": "uri",
+                "description": "Target TikTok URL",
+                "example": "https://www.tiktok.com/@username/video/1234567890"
+              },
+              "estimated_completion": {
+                "type": "string",
+                "description": "Estimated time to complete the request",
+                "example": "2-5 minutes"
+              },
+              "request_id": {
+                "type": "string",
+                "description": "Unique identifier for tracking the request",
+                "example": "req_abc123xyz"
+              }
+            }
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "error"
+            ],
+            "description": "Error status indicator",
+            "example": "error"
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message",
+            "example": "Invalid TikTok URL provided"
+          },
+          "code": {
+            "type": "string",
+            "description": "Machine-readable error code",
+            "example": "INVALID_URL"
+          },
+          "retry_after": {
+            "type": "integer",
+            "description": "Seconds to wait before retrying (for rate limit errors)",
+            "example": 300
+          }
+        },
+        "required": [
+          "status",
+          "message",
+          "code"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "sessionId": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "PHPSESSID",
+        "description": "Session ID cookie obtained from zefoy.com. Can be found in browser cookies under the cookies tab on zefoy.com"
+      },
+      "cloudflare": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "cf_clearance",
+        "description": "Cloudflare clearance cookie required for bypassing Cloudflare protection. Can be found in browser cookies under the cookies tab on zefoy.com"
+      }
+    }
+  },
+  "security": [
+    {
+      "sessionId": []
+    },
+    {
+      "cloudflare": []
+    }
+  ]
+}

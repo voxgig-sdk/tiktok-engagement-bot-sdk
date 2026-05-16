@@ -1,0 +1,27 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        url: "https://github.com/xtekky/zefoy"
+      }
+      description: "The Zefoy API allows users to automate interactions on TikTok, providing tools for gaining likes, followers, shares, and views quickly. It is designed to help increase engagement metrics for TikTok accounts through bot-managed activities, making it a useful resource for users looking to boost their social media presence on the platform."
+      license: {
+        name: "MIT"
+        url: "https://opensource.org/licenses/MIT"
+      }
+      servers: [
+        {
+          description: "Zefoy API Server"
+          url: "https://zefoy.com"
+        }
+      ]
+      title: "TikTok Engagement Bot"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

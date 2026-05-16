@@ -1,0 +1,67 @@
+<?php
+declare(strict_types=1);
+
+// TiktokEngagementBot SDK utility registration
+
+require_once __DIR__ . '/../core/UtilityType.php';
+require_once __DIR__ . '/Clean.php';
+require_once __DIR__ . '/Done.php';
+require_once __DIR__ . '/MakeError.php';
+require_once __DIR__ . '/FeatureAdd.php';
+require_once __DIR__ . '/FeatureHook.php';
+require_once __DIR__ . '/FeatureInit.php';
+require_once __DIR__ . '/Fetcher.php';
+require_once __DIR__ . '/MakeFetchDef.php';
+require_once __DIR__ . '/MakeContext.php';
+require_once __DIR__ . '/MakeOptions.php';
+require_once __DIR__ . '/MakeRequest.php';
+require_once __DIR__ . '/MakeResponse.php';
+require_once __DIR__ . '/MakeResult.php';
+require_once __DIR__ . '/MakePoint.php';
+require_once __DIR__ . '/MakeSpec.php';
+require_once __DIR__ . '/MakeUrl.php';
+require_once __DIR__ . '/Param.php';
+require_once __DIR__ . '/PrepareAuth.php';
+require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/PrepareHeaders.php';
+require_once __DIR__ . '/PrepareMethod.php';
+require_once __DIR__ . '/PrepareParams.php';
+require_once __DIR__ . '/PreparePath.php';
+require_once __DIR__ . '/PrepareQuery.php';
+require_once __DIR__ . '/ResultBasic.php';
+require_once __DIR__ . '/ResultBody.php';
+require_once __DIR__ . '/ResultHeaders.php';
+require_once __DIR__ . '/TransformRequest.php';
+require_once __DIR__ . '/TransformResponse.php';
+
+TiktokEngagementBotUtility::setRegistrar(function (TiktokEngagementBotUtility $u): void {
+    $u->clean = [TiktokEngagementBotClean::class, 'call'];
+    $u->done = [TiktokEngagementBotDone::class, 'call'];
+    $u->make_error = [TiktokEngagementBotMakeError::class, 'call'];
+    $u->feature_add = [TiktokEngagementBotFeatureAdd::class, 'call'];
+    $u->feature_hook = [TiktokEngagementBotFeatureHook::class, 'call'];
+    $u->feature_init = [TiktokEngagementBotFeatureInit::class, 'call'];
+    $u->fetcher = [TiktokEngagementBotFetcher::class, 'call'];
+    $u->make_fetch_def = [TiktokEngagementBotMakeFetchDef::class, 'call'];
+    $u->make_context = [TiktokEngagementBotMakeContext::class, 'call'];
+    $u->make_options = [TiktokEngagementBotMakeOptions::class, 'call'];
+    $u->make_request = [TiktokEngagementBotMakeRequest::class, 'call'];
+    $u->make_response = [TiktokEngagementBotMakeResponse::class, 'call'];
+    $u->make_result = [TiktokEngagementBotMakeResult::class, 'call'];
+    $u->make_point = [TiktokEngagementBotMakePoint::class, 'call'];
+    $u->make_spec = [TiktokEngagementBotMakeSpec::class, 'call'];
+    $u->make_url = [TiktokEngagementBotMakeUrl::class, 'call'];
+    $u->param = [TiktokEngagementBotParam::class, 'call'];
+    $u->prepare_auth = [TiktokEngagementBotPrepareAuth::class, 'call'];
+    $u->prepare_body = [TiktokEngagementBotPrepareBody::class, 'call'];
+    $u->prepare_headers = [TiktokEngagementBotPrepareHeaders::class, 'call'];
+    $u->prepare_method = [TiktokEngagementBotPrepareMethod::class, 'call'];
+    $u->prepare_params = [TiktokEngagementBotPrepareParams::class, 'call'];
+    $u->prepare_path = [TiktokEngagementBotPreparePath::class, 'call'];
+    $u->prepare_query = [TiktokEngagementBotPrepareQuery::class, 'call'];
+    $u->result_basic = [TiktokEngagementBotResultBasic::class, 'call'];
+    $u->result_body = [TiktokEngagementBotResultBody::class, 'call'];
+    $u->result_headers = [TiktokEngagementBotResultHeaders::class, 'call'];
+    $u->transform_request = [TiktokEngagementBotTransformRequest::class, 'call'];
+    $u->transform_response = [TiktokEngagementBotTransformResponse::class, 'call'];
+});
