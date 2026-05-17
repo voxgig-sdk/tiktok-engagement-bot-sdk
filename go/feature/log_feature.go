@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/voxgig-sdk/tiktok-engagement-bot-sdk/core"
+	"github.com/voxgig-sdk/tiktok-engagement-bot-sdk/go/core"
 )
 
 type LogFeature struct {

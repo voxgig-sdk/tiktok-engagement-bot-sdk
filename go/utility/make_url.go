@@ -3,9 +3,9 @@ package utility
 import (
 	"regexp"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/tiktok-engagement-bot-sdk/go/utility/struct"
 
-	"github.com/voxgig-sdk/tiktok-engagement-bot-sdk/core"
+	"github.com/voxgig-sdk/tiktok-engagement-bot-sdk/go/core"
 )
 
 func makeUrlUtil(ctx *core.Context) (string, error) {

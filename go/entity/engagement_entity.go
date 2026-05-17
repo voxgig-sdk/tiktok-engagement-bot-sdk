@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/tiktok-engagement-bot-sdk/core"
+	"github.com/voxgig-sdk/tiktok-engagement-bot-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/tiktok-engagement-bot-sdk/go/utility/struct"
 )
 
 type EngagementEntity struct {

@@ -1,10 +1,10 @@
 package voxgigtiktokengagementbotsdk
 
 import (
-	"github.com/voxgig-sdk/tiktok-engagement-bot-sdk/core"
-	"github.com/voxgig-sdk/tiktok-engagement-bot-sdk/entity"
-	"github.com/voxgig-sdk/tiktok-engagement-bot-sdk/feature"
-	_ "github.com/voxgig-sdk/tiktok-engagement-bot-sdk/utility"
+	"github.com/voxgig-sdk/tiktok-engagement-bot-sdk/go/core"
+	"github.com/voxgig-sdk/tiktok-engagement-bot-sdk/go/entity"
+	"github.com/voxgig-sdk/tiktok-engagement-bot-sdk/go/feature"
+	_ "github.com/voxgig-sdk/tiktok-engagement-bot-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

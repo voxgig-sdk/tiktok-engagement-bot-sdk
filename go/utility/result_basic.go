@@ -3,7 +3,7 @@ package utility
 import (
 	"fmt"
 
-	"github.com/voxgig-sdk/tiktok-engagement-bot-sdk/core"
+	"github.com/voxgig-sdk/tiktok-engagement-bot-sdk/go/core"
 )
 
 func resultBasicUtil(ctx *core.Context) *core.Result {
