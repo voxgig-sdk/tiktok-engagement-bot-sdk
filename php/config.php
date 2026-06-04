@@ -20,9 +20,6 @@ class TiktokEngagementBotConfig
             ],
             "options" => [
                 "base" => "https://zefoy.com",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],
