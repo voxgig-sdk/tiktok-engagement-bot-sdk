@@ -87,6 +87,7 @@ def _engagement_basic_setup(extra):
         "TIKTOKENGAGEMENTBOT_TEST_ENGAGEMENT_ENTID": idmap,
         "TIKTOKENGAGEMENTBOT_TEST_LIVE": "FALSE",
         "TIKTOKENGAGEMENTBOT_TEST_EXPLAIN": "FALSE",
+        "TIKTOKENGAGEMENTBOT_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -97,6 +98,7 @@ def _engagement_basic_setup(extra):
     if env.get("TIKTOKENGAGEMENTBOT_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("TIKTOKENGAGEMENTBOT_APIKEY"),
             },
             extra or {},
         ])

@@ -110,6 +110,7 @@ func engagementBasicSetup(extra map[string]any) *entityTestSetup {
 		"TIKTOKENGAGEMENTBOT_TEST_ENGAGEMENT_ENTID": idmap,
 		"TIKTOKENGAGEMENTBOT_TEST_LIVE":      "FALSE",
 		"TIKTOKENGAGEMENTBOT_TEST_EXPLAIN":   "FALSE",
+		"TIKTOKENGAGEMENTBOT_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["TIKTOKENGAGEMENTBOT_TEST_ENGAGEMENT_ENTID"])
@@ -120,6 +121,7 @@ func engagementBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["TIKTOKENGAGEMENTBOT_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["TIKTOKENGAGEMENTBOT_APIKEY"],
 			},
 			extra,
 		})

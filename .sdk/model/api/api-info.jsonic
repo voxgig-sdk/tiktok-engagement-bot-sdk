@@ -20,27 +20,7 @@ main: {
       ]
       title: "TikTok Engagement Bot"
       version: "1.0.0"
-      tagline: "Automates Zefoy's TikTok engagement actions (likes, followers, shares, views) via a scripted client"
-      homepage: "https://zefoy.com"
-      docs_url: "https://github.com/xtekky/zefoy"
-      license_short: "MIT (per the upstream zefoy project)"
-      license_md: `- Upstream \`xtekky/zefoy\` project is published under the MIT license.
-- Attribution to the original author is expected when redistributing or adapting the code.
-- Using this client to manipulate engagement metrics is likely to conflict with TikTok's Terms of Service and possibly Zefoy's own usage rules; check both before deploying.
-- This SDK is a thin wrapper around an unofficial third-party service and ships with no warranty.`
-      about_md: `This SDK targets [Zefoy](https://zefoy.com), a third-party web service that issues TikTok engagement actions (likes, followers, shares, views) on submitted video URLs. The upstream automation logic comes from the open-source [\`xtekky/zefoy\`](https://github.com/xtekky/zefoy) project, which drives the Zefoy site programmatically rather than calling a documented public API.
-
-Zefoy is not operated by TikTok and is not an official TikTok product. The freepublicapis.com listing for this entry does not enumerate REST endpoints; in practice the integration models Zefoy's engagement actions as a single \`engagement\` resource.
-
-Operational notes:
-
-- Zefoy gates requests behind Cloudflare and CAPTCHA challenges, so automated runs typically require a real browser session or a solver and may break without notice.
-- There is no stable, documented public API; behaviour can change whenever the underlying site changes.
-- Using automated engagement against TikTok content can violate TikTok's terms of service and may put the target account at risk.`
-      entity_desc: {
-        engagement: "Represents an automated engagement action (like, follower, share, or view) submitted against a TikTok video URL through the Zefoy site; no documented REST path is published."
-      }
-      auth: false
     }
   }
 }
+

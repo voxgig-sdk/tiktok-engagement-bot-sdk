@@ -113,6 +113,7 @@ function basicSetup(extra?: any) {
     'TIKTOK_ENGAGEMENT_BOT_TEST_ENGAGEMENT_ENTID': idmap,
     'TIKTOK_ENGAGEMENT_BOT_TEST_LIVE': 'FALSE',
     'TIKTOK_ENGAGEMENT_BOT_TEST_EXPLAIN': 'FALSE',
+    'TIKTOK_ENGAGEMENT_BOT_APIKEY': 'NONE',
   })
 
   idmap = env['TIKTOK_ENGAGEMENT_BOT_TEST_ENGAGEMENT_ENTID']
@@ -122,6 +123,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new TiktokEngagementBotSDK(merge([
       {
+        apikey: env.TIKTOK_ENGAGEMENT_BOT_APIKEY,
       },
       extra
     ]))
