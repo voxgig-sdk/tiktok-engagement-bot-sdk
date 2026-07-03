@@ -8,12 +8,14 @@ source = {
   dir = "tiktok-engagement-bot-sdk/lua"
 }
 description = {
-  summary = "TiktokEngagementBot SDK for Lua",
-  license = "MIT"
+  summary = "Unofficial generated Lua SDK for the TikTok Engagement Bot public API. Not affiliated with or endorsed by the upstream API provider.",
+  homepage = "https://github.com/voxgig-sdk/tiktok-engagement-bot-sdk",
+  issues_url = "https://github.com/voxgig-sdk/tiktok-engagement-bot-sdk/issues",
+  license = "MIT",
+  labels = { "voxgig", "sdk", "generated-sdk", "openapi", "api-client", "tiktok-engagement-bot" }
 }
 dependencies = {
   "lua >= 5.3",
-  "dkjson >= 2.5",
   "dkjson >= 2.5",
 }
 build = {

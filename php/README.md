@@ -10,7 +10,7 @@ The PHP SDK for the TiktokEngagementBot API — an entity-oriented client using 
 
 ## Install
 ```bash
-composer require voxgig/tiktok-engagement-bot-sdk
+composer require voxgig-sdk/tiktok-engagement-bot
 ```
 
 

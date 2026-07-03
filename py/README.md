@@ -10,7 +10,7 @@ The Python SDK for the TiktokEngagementBot API — an entity-oriented client fol
 
 ## Install
 ```bash
-pip install tiktok-engagement-bot-sdk
+pip install voxgig-sdk-tiktok-engagement-bot
 ```
 
 Or install from source:

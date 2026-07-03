@@ -10,7 +10,7 @@ The TypeScript SDK for the TiktokEngagementBot API — a type-safe, entity-orien
 
 ## Install
 ```bash
-npm install tiktok-engagement-bot
+npm install @voxgig-sdk/tiktok-engagement-bot
 ```
 ## Tutorial: your first API call
 

@@ -10,7 +10,7 @@ The Lua SDK for the TiktokEngagementBot API — an entity-oriented client using 
 
 ## Install
 ```bash
-luarocks install tiktok-engagement-bot-sdk
+luarocks install voxgig-sdk-tiktok-engagement-bot
 ```
 
 If the module is not yet published, add the source directory to

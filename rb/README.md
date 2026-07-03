@@ -10,13 +10,13 @@ The Ruby SDK for the TiktokEngagementBot API — an entity-oriented client using
 
 ## Install
 ```bash
-gem install tiktok-engagement-bot-sdk
+gem install voxgig-sdk-tiktok-engagement-bot
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "tiktok-engagement-bot-sdk"
+gem "voxgig-sdk-tiktok-engagement-bot"
 ```
 
 Then run:
