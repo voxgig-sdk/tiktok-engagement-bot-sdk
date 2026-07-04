@@ -245,6 +245,9 @@ func (sdk *TiktokEngagementBotSDK) Direct(fetchargs map[string]any) (map[string]
 }
 
 
+// Engagement returns a Engagement entity bound to this client.
+// Idiomatic usage: client.Engagement(nil).List(nil, nil) or
+// client.Engagement(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TiktokEngagementBotSDK) Engagement(data map[string]any) TiktokEngagementBotEntity {
 	return NewEngagementEntityFunc(sdk, data)
 }
