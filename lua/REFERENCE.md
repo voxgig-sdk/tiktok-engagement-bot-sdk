@@ -84,7 +84,7 @@ same parameters as `direct()`.
 ## EngagementEntity
 
 ```lua
-local engagement = client:engagement(nil)
+local engagement = client:Engagement(nil)
 ```
 
 ### Fields
@@ -105,7 +105,7 @@ local engagement = client:engagement(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:engagement():create({
+local result, err = client:Engagement():create({
   action = --[[ `$STRING` ]],
   url = --[[ `$STRING` ]],
 })

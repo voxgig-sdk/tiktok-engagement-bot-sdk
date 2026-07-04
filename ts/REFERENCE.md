@@ -110,7 +110,7 @@ Alias for `TiktokEngagementBotSDK.test()`.
 ## EngagementEntity
 
 ```ts
-const engagement = client.engagement
+const engagement = client.Engagement()
 ```
 
 ### Fields
@@ -131,7 +131,7 @@ const engagement = client.engagement
 Create a new entity with the given data.
 
 ```ts
-const result = await client.engagement.create({
+const result = await client.Engagement().create({
   action: /* `$STRING` */,
   url: /* `$STRING` */,
 })

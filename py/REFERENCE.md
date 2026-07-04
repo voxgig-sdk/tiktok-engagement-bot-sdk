@@ -81,7 +81,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## EngagementEntity
 
 ```python
-engagement = client.engagement
+engagement = client.Engagement()
 ```
 
 ### Fields
@@ -102,9 +102,9 @@ engagement = client.engagement
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.engagement.create({
-    "action": # `$STRING`,
-    "url": # `$STRING`,
+result = client.Engagement().create({
+    "action": ...,  # `$STRING`
+    "url": ...,  # `$STRING`
 })
 ```
 

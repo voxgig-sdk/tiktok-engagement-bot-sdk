@@ -34,8 +34,8 @@ $client = new TiktokEngagementBotSDK([
 ### 4. Create, update, and remove
 
 ```php
-// Create
-$created = $client->engagement()->create(["name" => "Example"]);
+// create() returns the bare created Engagement record.
+$created = $client->Engagement()->create(["name" => "Example"]);
 
 ```
 
@@ -80,13 +80,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = TiktokEngagementBotSDK::test();
+$client = TiktokEngagementBotSDK::test([
+    "entity" => ["engagement" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->engagement()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$engagement = $client->Engagement()->load(["id" => "test01"]);
+print_r($engagement);
 ```
 
 ### Use a custom fetch function
@@ -167,7 +171,7 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `get_utility` | `(): Utility` | Copy of the SDK utility object. |
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
-| `Engagement` | `($data): EngagementEntity` | Create a Engagement entity instance. |
+| `Engagement` | `($data): EngagementEntity` | Create an Engagement entity instance. |
 
 ### Entity interface
 
@@ -229,7 +233,7 @@ API path: `/api/engagement`
 
 ### Engagement
 
-Create an instance: `const engagement = client.engagement`
+Create an instance: `$engagement = $client->Engagement();`
 
 #### Operations
 
@@ -250,11 +254,11 @@ Create an instance: `const engagement = client.engagement`
 
 #### Example: Create
 
-```ts
-const engagement = await client.engagement.create({
-  action: /* `$STRING` */,
-  url: /* `$STRING` */,
-})
+```php
+$engagement = $client->Engagement()->create([
+    "action" => null, // `$STRING`
+    "url" => null, // `$STRING`
+]);
 ```
 
 
@@ -329,7 +333,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$engagement = $client->engagement();
+$engagement = $client->Engagement();
 $engagement->load(["id" => "example_id"]);
 
 // $engagement->dataGet() now returns the loaded engagement data
