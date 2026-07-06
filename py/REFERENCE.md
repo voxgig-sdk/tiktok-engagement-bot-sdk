@@ -8,7 +8,7 @@ Complete API reference for the TiktokEngagementBot Python SDK.
 ### Constructor
 
 ```python
-from tiktok-engagement-bot_sdk import TiktokEngagementBotSDK
+from tiktokengagementbot_sdk import TiktokEngagementBotSDK
 
 client = TiktokEngagementBotSDK(options)
 ```
@@ -88,12 +88,12 @@ engagement = client.Engagement()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `action` | ``$STRING`` | Yes |  |
-| `data` | ``$OBJECT`` | No |  |
-| `message` | ``$STRING`` | No |  |
-| `quantity` | ``$INTEGER`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | Yes |  |
+| `action` | `str` | Yes |  |
+| `data` | `dict` | No |  |
+| `message` | `str` | No |  |
+| `quantity` | `int` | No |  |
+| `status` | `str` | No |  |
+| `url` | `str` | Yes |  |
 
 ### Operations
 
@@ -103,8 +103,8 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Engagement().create({
-    "action": ...,  # `$STRING`
-    "url": ...,  # `$STRING`
+    "action": "example",  # str
+    "url": "example",  # str
 })
 ```
 

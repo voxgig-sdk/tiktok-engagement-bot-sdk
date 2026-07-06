@@ -4,6 +4,8 @@
 
 The PHP SDK for the TiktokEngagementBot API — an entity-oriented client using PHP conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `$client->Engagement()` — with named operations (`create`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -35,8 +37,39 @@ $client = new TiktokEngagementBotSDK([
 
 ```php
 // create() returns the bare created Engagement record.
-$created = $client->Engagement()->create(["name" => "Example"]);
+$created = $client->Engagement()->create(["action" => "example", "url" => "example"]);
 
+```
+
+
+## Error handling
+
+Entity operations throw a `\Throwable` on failure, so wrap them in
+`try` / `catch`:
+
+```php
+try {
+    $engagement = $client->Engagement()->create(["action" => "example", "url" => "example"]);
+} catch (\Throwable $err) {
+    echo "Error: " . $err->getMessage();
+}
+```
+
+`direct()` does **not** throw — it returns the result array. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```php
+$result = $client->direct([
+    "path" => "/api/resource/{id}",
+    "method" => "GET",
+    "params" => ["id" => "example_id"],
+]);
+
+if (! $result["ok"]) {
+    $err = $result["err"] ?? null;
+    echo "request failed: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
+}
 ```
 
 
@@ -59,7 +92,10 @@ if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
 } else {
-    echo "Error: " . $result["err"]->getMessage();
+    // On an HTTP error status there is no err (only a transport failure sets
+    // it), so fall back to the status code.
+    $err = $result["err"] ?? null;
+    echo "Error: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -80,16 +116,13 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```php
-$client = TiktokEngagementBotSDK::test([
-    "entity" => ["engagement" => ["test01" => ["id" => "test01"]]],
-]);
+$client = TiktokEngagementBotSDK::test();
 
-// load() returns the bare mock record (throws on error).
-$engagement = $client->Engagement()->load(["id" => "test01"]);
+// Entity ops return the bare mock record (throws on error).
+$engagement = $client->Engagement()->create(["action" => "example", "url" => "example"]);
 print_r($engagement);
 ```
 
@@ -179,11 +212,7 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `($reqmatch, $ctrl): array` | Load a single entity by match criteria. |
-| `list` | `($reqmatch, $ctrl): array` | List entities matching the criteria. |
 | `create` | `($reqdata, $ctrl): array` | Create a new entity. |
-| `update` | `($reqdata, $ctrl): array` | Update an existing entity. |
-| `remove` | `($reqmatch, $ctrl): array` | Remove an entity. |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -245,29 +274,33 @@ Create an instance: `$engagement = $client->Engagement();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `action` | ``$STRING`` |  |
-| `data` | ``$OBJECT`` |  |
-| `message` | ``$STRING`` |  |
-| `quantity` | ``$INTEGER`` |  |
-| `status` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `action` | `string` |  |
+| `data` | `array` |  |
+| `message` | `string` |  |
+| `quantity` | `int` |  |
+| `status` | `string` |  |
+| `url` | `string` |  |
 
 #### Example: Create
 
 ```php
 $engagement = $client->Engagement()->create([
-    "action" => null, // `$STRING`
-    "url" => null, // `$STRING`
+    "action" => null, // string
+    "url" => null, // string
 ]);
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -284,8 +317,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return array.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -329,15 +363,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `create`, the entity
 stores the returned data and match criteria internally.
 
 ```php
 $engagement = $client->Engagement();
-$engagement->load(["id" => "example_id"]);
+$engagement->create(["action" => "example", "url" => "example"]);
 
-// $engagement->dataGet() now returns the loaded engagement data
-// $engagement->matchGet() returns the last match criteria
+// $engagement->data_get() now returns the engagement data from the last create
+// $engagement->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

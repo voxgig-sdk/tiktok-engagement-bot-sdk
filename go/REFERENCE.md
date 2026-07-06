@@ -98,12 +98,12 @@ engagement := client.Engagement(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `action` | ``$STRING`` | Yes |  |
-| `data` | ``$OBJECT`` | No |  |
-| `message` | ``$STRING`` | No |  |
-| `quantity` | ``$INTEGER`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | Yes |  |
+| `action` | `string` | Yes |  |
+| `data` | `map[string]any` | No |  |
+| `message` | `string` | No |  |
+| `quantity` | `int` | No |  |
+| `status` | `string` | No |  |
+| `url` | `string` | Yes |  |
 
 ### Operations
 
@@ -113,8 +113,8 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Engagement(nil).Create(map[string]any{
-    "action": /* `$STRING` */,
-    "url": /* `$STRING` */,
+    "action": /* string */,
+    "url": /* string */,
 }, nil)
 ```
 

@@ -117,12 +117,12 @@ const engagement = client.Engagement()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `action` | ``$STRING`` | Yes |  |
-| `data` | ``$OBJECT`` | No |  |
-| `message` | ``$STRING`` | No |  |
-| `quantity` | ``$INTEGER`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | Yes |  |
+| `action` | `string` | Yes |  |
+| `data` | `Record<string, any>` | No |  |
+| `message` | `string` | No |  |
+| `quantity` | `number` | No |  |
+| `status` | `string` | No |  |
+| `url` | `string` | Yes |  |
 
 ### Operations
 
@@ -132,8 +132,8 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Engagement().create({
-  action: /* `$STRING` */,
-  url: /* `$STRING` */,
+  action: /* string */,
+  url: /* string */,
 })
 ```
 

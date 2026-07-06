@@ -91,12 +91,12 @@ local engagement = client:Engagement(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `action` | ``$STRING`` | Yes |  |
-| `data` | ``$OBJECT`` | No |  |
-| `message` | ``$STRING`` | No |  |
-| `quantity` | ``$INTEGER`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | Yes |  |
+| `action` | `string` | Yes |  |
+| `data` | `table` | No |  |
+| `message` | `string` | No |  |
+| `quantity` | `number` | No |  |
+| `status` | `string` | No |  |
+| `url` | `string` | Yes |  |
 
 ### Operations
 
@@ -106,8 +106,8 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:Engagement():create({
-  action = --[[ `$STRING` ]],
-  url = --[[ `$STRING` ]],
+  action = --[[ string ]],
+  url = --[[ string ]],
 })
 ```
 

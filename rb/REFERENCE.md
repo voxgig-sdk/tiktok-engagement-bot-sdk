@@ -8,7 +8,7 @@ Complete API reference for the TiktokEngagementBot Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'tiktok-engagement-bot_sdk'
+require_relative 'TiktokEngagementBot_sdk'
 
 client = TiktokEngagementBotSDK.new(options)
 ```
@@ -94,12 +94,12 @@ engagement = client.Engagement
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `action` | ``$STRING`` | Yes |  |
-| `data` | ``$OBJECT`` | No |  |
-| `message` | ``$STRING`` | No |  |
-| `quantity` | ``$INTEGER`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | Yes |  |
+| `action` | `String` | Yes |  |
+| `data` | `Hash` | No |  |
+| `message` | `String` | No |  |
+| `quantity` | `Integer` | No |  |
+| `status` | `String` | No |  |
+| `url` | `String` | Yes |  |
 
 ### Operations
 
@@ -109,8 +109,8 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Engagement.create({
-  "action" => # `$STRING`,
-  "url" => # `$STRING`,
+  "action" => "example", # String
+  "url" => "example", # String
 })
 ```
 

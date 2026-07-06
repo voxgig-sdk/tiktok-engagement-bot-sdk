@@ -37,10 +37,10 @@ Engagement = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Engagement#create (any subset of Engagement fields).
+# Request payload for Engagement#create.
 #
 # @!attribute [rw] action
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] data
 #   @return [Hash, nil]
@@ -55,7 +55,7 @@ Engagement = Struct.new(
 #   @return [String, nil]
 #
 # @!attribute [rw] url
-#   @return [String, nil]
+#   @return [String]
 EngagementCreateData = Struct.new(
   :action,
   :data,

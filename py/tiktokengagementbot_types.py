@@ -28,10 +28,13 @@ class Engagement(EngagementRequired, total=False):
     status: str
 
 
-class EngagementCreateData(TypedDict, total=False):
+class EngagementCreateDataRequired(TypedDict):
     action: str
+    url: str
+
+
+class EngagementCreateData(EngagementCreateDataRequired, total=False):
     data: dict
     message: str
     quantity: int
     status: str
-    url: str

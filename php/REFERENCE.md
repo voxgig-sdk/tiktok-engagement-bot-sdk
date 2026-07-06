@@ -8,7 +8,7 @@ Complete API reference for the TiktokEngagementBot PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/tiktok-engagement-bot_sdk.php';
+require_once __DIR__ . '/tiktokengagementbot_sdk.php';
 
 $client = new TiktokEngagementBotSDK($options);
 ```
@@ -46,11 +46,11 @@ $client = TiktokEngagementBotSDK::test();
 
 Create a new `EngagementEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): TiktokEngagementBotUtility`
 
 Return a copy of the SDK utility object.
 
@@ -93,12 +93,12 @@ $engagement = $client->Engagement();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `action` | ``$STRING`` | Yes |  |
-| `data` | ``$OBJECT`` | No |  |
-| `message` | ``$STRING`` | No |  |
-| `quantity` | ``$INTEGER`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | Yes |  |
+| `action` | `string` | Yes |  |
+| `data` | `array` | No |  |
+| `message` | `string` | No |  |
+| `quantity` | `int` | No |  |
+| `status` | `string` | No |  |
+| `url` | `string` | Yes |  |
 
 ### Operations
 
@@ -108,26 +108,26 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->Engagement()->create([
-  "action" => /* `$STRING` */,
-  "url" => /* `$STRING` */,
+  "action" => null, // string
+  "url" => null, // string
 ]);
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -136,7 +136,7 @@ Set the entity match criteria.
 Create a new `EngagementEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

@@ -23,14 +23,14 @@ class Engagement
     public string $url;
 }
 
-/** Match filter for Engagement#create (any subset of Engagement fields). */
+/** Request payload for Engagement#create. */
 class EngagementCreateData
 {
-    public ?string $action = null;
+    public string $action;
     public ?array $data = null;
     public ?string $message = null;
     public ?int $quantity = null;
     public ?string $status = null;
-    public ?string $url = null;
+    public string $url;
 }
 

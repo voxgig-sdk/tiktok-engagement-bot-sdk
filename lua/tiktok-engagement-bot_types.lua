@@ -15,6 +15,12 @@
 ---@field url string
 
 ---@class EngagementCreateData
+---@field action string
+---@field data? table
+---@field message? string
+---@field quantity? number
+---@field status? string
+---@field url string
 
 local M = {}
 
