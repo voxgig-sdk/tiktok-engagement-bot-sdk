@@ -132,8 +132,8 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Engagement().create({
-  action: /* string */,
-  url: /* string */,
+  action: 'example_action',
+  url: 'example_url',
 })
 ```
 

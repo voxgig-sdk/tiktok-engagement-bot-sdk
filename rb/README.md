@@ -36,7 +36,7 @@ client = TiktokEngagementBotSDK.new({
 
 ```ruby
 # create returns the bare created Engagement record.
-created = client.Engagement.create({ "action" => "example", "url" => "example" })
+created = client.Engagement.create({ "action" => "example_action", "url" => "example_url" })
 
 ```
 
@@ -275,8 +275,8 @@ Create an instance: `engagement = client.Engagement`
 
 ```ruby
 engagement = client.Engagement.create({
-  "action" => "example", # String
-  "url" => "example", # String
+  "action" => "example_action", # String
+  "url" => "example_url", # String
 })
 ```
 

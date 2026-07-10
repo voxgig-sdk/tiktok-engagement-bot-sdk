@@ -109,8 +109,8 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Engagement.create({
-  "action" => "example", # String
-  "url" => "example", # String
+  "action" => "example_action", # String
+  "url" => "example_url", # String
 })
 ```
 

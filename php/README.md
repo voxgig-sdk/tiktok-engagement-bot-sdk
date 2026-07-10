@@ -37,7 +37,7 @@ $client = new TiktokEngagementBotSDK([
 
 ```php
 // create() returns the bare created Engagement record.
-$created = $client->Engagement()->create(["action" => "example", "url" => "example"]);
+$created = $client->Engagement()->create(["action" => "example_action", "url" => "example_url"]);
 
 ```
 

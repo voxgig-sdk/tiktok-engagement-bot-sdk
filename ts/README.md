@@ -329,8 +329,8 @@ Create an instance: `const engagement = client.Engagement()`
 
 ```ts
 const engagement = await client.Engagement().create({
-  action: /* string */,
-  url: /* string */,
+  action: 'example_action',
+  url: 'example_url',
 })
 ```
 

@@ -103,8 +103,8 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Engagement().create({
-    "action": "example",  # str
-    "url": "example",  # str
+    "action": "example_action",  # str
+    "url": "example_url",  # str
 })
 ```
 

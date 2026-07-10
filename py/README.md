@@ -43,7 +43,7 @@ client = TiktokEngagementBotSDK({
 
 ```python
 # Create — returns the bare created record (a dict)
-created = client.Engagement().create({"action": "example", "url": "example"})
+created = client.Engagement().create({"action": "example_action", "url": "example_url"})
 
 ```
 
@@ -282,8 +282,8 @@ Create an instance: `engagement = client.Engagement()`
 
 ```python
 engagement = client.Engagement().create({
-    "action": "example",  # str
-    "url": "example",  # str
+    "action": "example_action",  # str
+    "url": "example_url",  # str
 })
 ```
 

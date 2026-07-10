@@ -92,6 +92,7 @@ same parameters as `Direct()`.
 
 ```go
 engagement := client.Engagement(nil)
+fmt.Println(engagement.GetName()) // "engagement"
 ```
 
 ### Fields
@@ -113,9 +114,13 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Engagement(nil).Create(map[string]any{
-    "action": /* string */,
-    "url": /* string */,
+    "action": "example_action",
+    "url": "example_url",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

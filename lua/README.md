@@ -39,7 +39,7 @@ local client = sdk.new({
 
 ```lua
 -- Create
-local created, err = client:Engagement():create({ action = "example", url = "example" })
+local created, err = client:Engagement():create({ action = "example_action", url = "example_url" })
 if err then error(err) end
 
 ```
@@ -271,8 +271,8 @@ Create an instance: `local engagement = client:Engagement(nil)`
 
 ```lua
 local engagement, err = client:Engagement():create({
-  action = nil, -- string
-  url = nil, -- string
+  action = "example_action", -- string
+  url = "example_url", -- string
 })
 ```
 
