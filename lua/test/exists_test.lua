@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- TiktokEngagementBot SDK exists test
 
 local sdk = require("tiktok-engagement-bot_sdk")
 
