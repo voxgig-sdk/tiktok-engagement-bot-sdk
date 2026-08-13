@@ -30,44 +30,49 @@ local function make_config()
           {
             ["active"] = true,
             ["name"] = "action",
-            ["req"] = true,
+            ["op"] = {
+              ["create"] = {
+                ["req"] = true,
+                ["type"] = "`$STRING`",
+              },
+            },
+            ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 0,
           },
           {
             ["active"] = true,
-            ["name"] = "data",
-            ["req"] = false,
-            ["type"] = "`$OBJECT`",
-            ["index$"] = 1,
-          },
-          {
-            ["active"] = true,
-            ["name"] = "message",
+            ["name"] = "estimated_completion",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 2,
+            ["index$"] = 1,
           },
           {
             ["active"] = true,
             ["name"] = "quantity",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
+            ["index$"] = 2,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "request_id",
+            ["req"] = false,
+            ["type"] = "`$STRING`",
             ["index$"] = 3,
           },
           {
             ["active"] = true,
-            ["name"] = "status",
+            ["name"] = "url",
+            ["op"] = {
+              ["create"] = {
+                ["req"] = true,
+                ["type"] = "`$STRING`",
+              },
+            },
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 4,
-          },
-          {
-            ["active"] = true,
-            ["name"] = "url",
-            ["req"] = true,
-            ["type"] = "`$STRING`",
-            ["index$"] = 5,
           },
         },
         ["name"] = "engagement",
@@ -79,6 +84,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/engagement",
                 ["parts"] = {
@@ -88,7 +94,7 @@ local function make_config()
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },

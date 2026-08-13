@@ -11,28 +11,24 @@
 # Engagement entity data model.
 #
 # @!attribute [rw] action
-#   @return [String]
+#   @return [String, nil]
 #
-# @!attribute [rw] data
-#   @return [Hash, nil]
-#
-# @!attribute [rw] message
+# @!attribute [rw] estimated_completion
 #   @return [String, nil]
 #
 # @!attribute [rw] quantity
 #   @return [Integer, nil]
 #
-# @!attribute [rw] status
+# @!attribute [rw] request_id
 #   @return [String, nil]
 #
 # @!attribute [rw] url
-#   @return [String]
+#   @return [String, nil]
 Engagement = Struct.new(
   :action,
-  :data,
-  :message,
+  :estimated_completion,
   :quantity,
-  :status,
+  :request_id,
   :url,
   keyword_init: true
 )
@@ -40,28 +36,24 @@ Engagement = Struct.new(
 # Request payload for Engagement#create.
 #
 # @!attribute [rw] action
-#   @return [String]
+#   @return [String, nil]
 #
-# @!attribute [rw] data
-#   @return [Hash, nil]
-#
-# @!attribute [rw] message
+# @!attribute [rw] estimated_completion
 #   @return [String, nil]
 #
 # @!attribute [rw] quantity
 #   @return [Integer, nil]
 #
-# @!attribute [rw] status
+# @!attribute [rw] request_id
 #   @return [String, nil]
 #
 # @!attribute [rw] url
-#   @return [String]
+#   @return [String, nil]
 EngagementCreateData = Struct.new(
   :action,
-  :data,
-  :message,
+  :estimated_completion,
   :quantity,
-  :status,
+  :request_id,
   :url,
   keyword_init: true
 )

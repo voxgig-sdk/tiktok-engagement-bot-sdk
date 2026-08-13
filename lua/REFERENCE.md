@@ -91,12 +91,21 @@ local engagement = client:Engagement(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `action` | `string` | Yes |  |
-| `data` | `table` | No |  |
-| `message` | `string` | No |  |
+| `action` | `string` | No |  |
+| `estimated_completion` | `string` | No |  |
 | `quantity` | `number` | No |  |
-| `status` | `string` | No |  |
-| `url` | `string` | Yes |  |
+| `request_id` | `string` | No |  |
+| `url` | `string` | No |  |
+
+### Field Usage by Operation
+
+| Field | create |
+| --- | --- |
+| `action` | Yes |
+| `estimated_completion` | - |
+| `quantity` | - |
+| `request_id` | - |
+| `url` | Yes |
 
 ### Operations
 
@@ -106,8 +115,6 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:Engagement():create({
-  action = --[[ string ]],
-  url = --[[ string ]],
 })
 ```
 

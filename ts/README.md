@@ -38,10 +38,10 @@ const client = new TiktokEngagementBotSDK({
 ### 4. Create, update, and remove
 
 ```ts
-// Create — returns the created Engagement
+// Create — returns the created Engagement ENTITY (.data() for the record)
 const created = await client.Engagement().create({
   action: 'example_action',
-  url: 'example_url',
+  estimated_completion: 'example_estimated_completion',
 })
 
 ```
@@ -53,7 +53,7 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const engagement = await client.Engagement().create({ action: "example", url: "example" })
+  const engagement = await client.Engagement().create({ action: "example", estimated_completion: "example", quantity: 1 })
   console.log(engagement)
 } catch (err) {
   console.error('create failed:', err)
@@ -120,8 +120,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = TiktokEngagementBotSDK.test()
 
-const engagement = await client.Engagement().create({ action: 'example_action', url: 'example_url' })
-// engagement is a bare entity populated with mock response data
+const engagement = await client.Engagement().create({ action: 'example_action', estimated_completion: 'example_estimated_completion', quantity: 1 })
+// engagement is the entity, populated with mock response data
+// — call engagement.data() for the record itself
 console.log(engagement)
 ```
 
@@ -140,7 +141,7 @@ Entity instances remember their last match and data:
 const entity = client.Engagement()
 
 // First call runs the operation and stores its result
-await entity.create({ action: 'example_action', url: 'example_url' })
+await entity.create({ action: 'example_action', estimated_completion: 'example_estimated_completion', quantity: 1 })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -289,10 +290,9 @@ The `prepare()` method returns:
 | Field | Description |
 | --- | --- |
 | `action` |  |
-| `data` |  |
-| `message` |  |
+| `estimated_completion` |  |
 | `quantity` |  |
-| `status` |  |
+| `request_id` |  |
 | `url` |  |
 
 Operations: create.
@@ -319,18 +319,15 @@ Create an instance: `const engagement = client.Engagement()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `action` | `string` |  |
-| `data` | `Record<string, any>` |  |
-| `message` | `string` |  |
+| `estimated_completion` | `string` |  |
 | `quantity` | `number` |  |
-| `status` | `string` |  |
+| `request_id` | `string` |  |
 | `url` | `string` |  |
 
 #### Example: Create
 
 ```ts
 const engagement = await client.Engagement().create({
-  action: 'example_action',
-  url: 'example_url',
 })
 ```
 
@@ -405,7 +402,7 @@ calls on the same instance can rely on this state.
 
 ```ts
 const engagement = client.Engagement()
-await engagement.create({ action: "example", url: "example" })
+await engagement.create({ action: "example", estimated_completion: "example", quantity: 1 })
 
 // engagement.data() now returns the engagement data from the last `create`
 // engagement.match() returns the last match criteria

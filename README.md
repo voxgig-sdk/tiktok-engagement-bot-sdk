@@ -25,7 +25,8 @@ support (`create`):
 const client = new TiktokEngagementBotSDK()
 const engagement = await client.Engagement().create({
   action: 'example',
-  url: 'example',
+  estimated_completion: 'example',
+  quantity: 1,
 })
 ```
 
@@ -41,9 +42,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = TiktokEngagementBotSDK.test()
-const engagement = await client.Engagement().create({ action: 'example_action', url: 'example_url' })
-// engagement is a bare Engagement populated with mock data
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = TiktokEngagementBotSDK.test({
+  entity: {
+    engagement: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const engagement = await client.Engagement().create({ action: 'example_action', estimated_completion: 'example_estimated_completion', quantity: 1 })
+// engagement is the Engagement entity, populated with mock data
+// — call engagement.data() for the record itself
 console.log(engagement)
 ```
 
@@ -51,7 +61,7 @@ console.log(engagement)
 
 ```python
 client = TiktokEngagementBotSDK.test()
-engagement = client.Engagement().create({"action": "example", "url": "example"})
+engagement = client.Engagement().create({"action": "example", "estimated_completion": "example", "quantity": 1})
 print(engagement)
 ```
 
@@ -62,7 +72,7 @@ print(engagement)
 $client = TiktokEngagementBotSDK::test([
     "entity" => ["engagement" => ["test01" => []]],
 ]);
-$engagement = $client->Engagement()->create(["action" => "example", "url" => "example"]);
+$engagement = $client->Engagement()->create(["action" => "example", "estimated_completion" => "example", "quantity" => 1]);
 ```
 
 ### Golang
@@ -70,7 +80,7 @@ $engagement = $client->Engagement()->create(["action" => "example", "url" => "ex
 ```go
 client := sdk.Test()
 result, err := client.Engagement(nil).Create(
-    map[string]any{"action": "example", "url": "example"}, nil,
+    map[string]any{"action": "example", "estimated_completion": "example", "quantity": 1}, nil,
 )
 ```
 
@@ -81,14 +91,14 @@ result, err := client.Engagement(nil).Create(
 client = TiktokEngagementBotSDK.test({
   "entity" => { "engagement" => { "test01" => {} } },
 })
-engagement = client.Engagement.create({ "action" => "example", "url" => "example" })
+engagement = client.Engagement.create({ "action" => "example", "estimated_completion" => "example", "quantity" => 1 })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:Engagement():create({ action = "example", url = "example" })
+local result, err = client:Engagement():create({ action = "example", estimated_completion = "example", quantity = 1 })
 ```
 
 ## Packages
@@ -335,6 +345,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://github.com/xtekky/zefoy](https://github.com/xtekky/zefoy)
 

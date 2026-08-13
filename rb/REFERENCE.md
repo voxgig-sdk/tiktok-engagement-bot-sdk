@@ -94,12 +94,21 @@ engagement = client.Engagement
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `action` | `String` | Yes |  |
-| `data` | `Hash` | No |  |
-| `message` | `String` | No |  |
+| `action` | `String` | No |  |
+| `estimated_completion` | `String` | No |  |
 | `quantity` | `Integer` | No |  |
-| `status` | `String` | No |  |
-| `url` | `String` | Yes |  |
+| `request_id` | `String` | No |  |
+| `url` | `String` | No |  |
+
+### Field Usage by Operation
+
+| Field | create |
+| --- | --- |
+| `action` | Yes |
+| `estimated_completion` | - |
+| `quantity` | - |
+| `request_id` | - |
+| `url` | Yes |
 
 ### Operations
 
@@ -109,8 +118,6 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Engagement.create({
-  "action" => "example_action", # String
-  "url" => "example_url", # String
 })
 ```
 

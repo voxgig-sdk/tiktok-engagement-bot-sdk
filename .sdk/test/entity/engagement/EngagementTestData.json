@@ -2,30 +2,27 @@
   "existing": {
     "engagement": {
       "ENGAGEMENT00": {
-        "action": "s3c",
-        "data": {},
-        "message": "s3e",
-        "quantity": "s3f",
-        "status": "s40",
-        "url": "s41",
+        "action": "s32",
+        "estimated_completion": "s33",
+        "quantity": "s34",
+        "request_id": "REQUEST01",
+        "url": "s36",
         "id": "ENGAGEMENT00"
       },
       "ENGAGEMENT01": {
-        "action": "s78",
-        "data": {},
-        "message": "s7a",
-        "quantity": "s7b",
-        "status": "s7c",
-        "url": "s7d",
+        "action": "s64",
+        "estimated_completion": "s65",
+        "quantity": "s66",
+        "request_id": "REQUEST01",
+        "url": "s68",
         "id": "ENGAGEMENT01"
       },
       "ENGAGEMENT02": {
-        "action": "sb4",
-        "data": {},
-        "message": "sb6",
-        "quantity": "sb7",
-        "status": "sb8",
-        "url": "sb9",
+        "action": "s96",
+        "estimated_completion": "s97",
+        "quantity": "s98",
+        "request_id": "REQUEST01",
+        "url": "s9a",
         "id": "ENGAGEMENT02"
       }
     }
@@ -33,12 +30,11 @@
   "new": {
     "engagement": {
       "engagement_ref01": {
-        "action": "sf0",
-        "data": {},
-        "message": "sf2",
-        "quantity": "sf3",
-        "status": "sf4",
-        "url": "sf5"
+        "action": "sc8",
+        "estimated_completion": "sc9",
+        "quantity": "sca",
+        "request_id": "REQUEST01",
+        "url": "scc"
       }
     }
   }

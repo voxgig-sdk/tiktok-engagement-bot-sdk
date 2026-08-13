@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ TiktokEngagementBotUtility.registrar = ->(u) {
   u.prepare_params = TiktokEngagementBotUtilities::PrepareParams
   u.prepare_path = TiktokEngagementBotUtilities::PreparePath
   u.prepare_query = TiktokEngagementBotUtilities::PrepareQuery
+  u.graphql_body = TiktokEngagementBotUtilities::GraphqlBody
+  u.graphql_errors = TiktokEngagementBotUtilities::GraphqlErrors
   u.result_basic = TiktokEngagementBotUtilities::ResultBasic
   u.result_body = TiktokEngagementBotUtilities::ResultBody
   u.result_headers = TiktokEngagementBotUtilities::ResultHeaders

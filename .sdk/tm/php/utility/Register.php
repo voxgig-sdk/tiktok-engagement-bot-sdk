@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ TiktokEngagementBotUtility::setRegistrar(function (TiktokEngagementBotUtility $u
     $u->prepare_params = [TiktokEngagementBotPrepareParams::class, 'call'];
     $u->prepare_path = [TiktokEngagementBotPreparePath::class, 'call'];
     $u->prepare_query = [TiktokEngagementBotPrepareQuery::class, 'call'];
+    $u->graphql_body = [TiktokEngagementBotGraphql::class, 'body'];
+    $u->graphql_errors = [TiktokEngagementBotGraphql::class, 'errors'];
     $u->result_basic = [TiktokEngagementBotResultBasic::class, 'call'];
     $u->result_body = [TiktokEngagementBotResultBody::class, 'call'];
     $u->result_headers = [TiktokEngagementBotResultHeaders::class, 'call'];

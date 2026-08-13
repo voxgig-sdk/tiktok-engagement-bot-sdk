@@ -88,12 +88,21 @@ engagement = client.Engagement()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `action` | `str` | Yes |  |
-| `data` | `dict` | No |  |
-| `message` | `str` | No |  |
+| `action` | `str` | No |  |
+| `estimated_completion` | `str` | No |  |
 | `quantity` | `int` | No |  |
-| `status` | `str` | No |  |
-| `url` | `str` | Yes |  |
+| `request_id` | `str` | No |  |
+| `url` | `str` | No |  |
+
+### Field Usage by Operation
+
+| Field | create |
+| --- | --- |
+| `action` | Yes |
+| `estimated_completion` | - |
+| `quantity` | - |
+| `request_id` | - |
+| `url` | Yes |
 
 ### Operations
 
@@ -103,8 +112,6 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Engagement().create({
-    "action": "example_action",  # str
-    "url": "example_url",  # str
 })
 ```
 

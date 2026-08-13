@@ -7,16 +7,17 @@ main: kit: entity: engagement: {
   fields: [
     {
       name: "action"
-      req: true
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      req: false
       type: "`$STRING`"
     }
     {
-      name: "data"
-      req: false
-      type: "`$OBJECT`"
-    }
-    {
-      name: "message"
+      name: "estimated_completion"
       req: false
       type: "`$STRING`"
     }
@@ -26,13 +27,19 @@ main: kit: entity: engagement: {
       type: "`$INTEGER`"
     }
     {
-      name: "status"
+      name: "request_id"
       req: false
       type: "`$STRING`"
     }
     {
       name: "url"
-      req: true
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      req: false
       type: "`$STRING`"
     }
   ]
@@ -51,7 +58,7 @@ main: kit: entity: engagement: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

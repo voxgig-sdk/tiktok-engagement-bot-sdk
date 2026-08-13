@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# TiktokEngagementBot SDK exists test
 
 import pytest
 from tiktokengagementbot_sdk import TiktokEngagementBotSDK

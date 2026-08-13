@@ -8,6 +8,7 @@ guide: {
   entity: engagement: {
     path: "/api/engagement": {
       op: create: method: *POST
+      op: create: transform: res: *("`body.data`")|top
     }
   }
 

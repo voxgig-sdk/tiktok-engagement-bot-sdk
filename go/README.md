@@ -54,7 +54,7 @@ func main() {
     })
 
     // Create a engagement.
-    created, err := client.Engagement(nil).Create(map[string]any{"action": "example_action", "url": "example_url"}, nil)
+    created, err := client.Engagement(nil).Create(map[string]any{"action": "example_action", "estimated_completion": "example_estimated_completion"}, nil)
     if err != nil {
         panic(err)
     }
@@ -69,7 +69,7 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-engagement, err := client.Engagement(nil).Create(map[string]any{"action": "example", "url": "example"}, nil)
+engagement, err := client.Engagement(nil).Create(map[string]any{"action": "example", "estimated_completion": "example", "quantity": 1}, nil)
 if err != nil {
     // handle err
     return
@@ -139,7 +139,7 @@ Create a mock client for unit testing — no server required:
 client := sdk.Test()
 
 engagement, err := client.Engagement(nil).Create(
-    map[string]any{"action": "example", "url": "example"}, nil,
+    map[string]any{"action": "example", "estimated_completion": "example", "quantity": 1}, nil,
 )
 if err != nil {
     panic(err)
@@ -264,10 +264,9 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | Field | Description |
 | --- | --- |
 | `"action"` |  |
-| `"data"` |  |
-| `"message"` |  |
+| `"estimated_completion"` |  |
 | `"quantity"` |  |
-| `"status"` |  |
+| `"request_id"` |  |
 | `"url"` |  |
 
 Operations: Create.
@@ -294,18 +293,15 @@ Create an instance: `engagement := client.Engagement(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `action` | `string` |  |
-| `data` | `map[string]any` |  |
-| `message` | `string` |  |
+| `estimated_completion` | `string` |  |
 | `quantity` | `int` |  |
-| `status` | `string` |  |
+| `request_id` | `string` |  |
 | `url` | `string` |  |
 
 #### Example: Create
 
 ```go
 result, err := client.Engagement(nil).Create(map[string]any{
-    "action": "example_action",
-    "url": "example_url",
 }, nil)
 if err != nil {
     panic(err)
@@ -388,7 +384,7 @@ stores the returned data and match criteria internally.
 
 ```go
 engagement := client.Engagement(nil)
-engagement.Create(map[string]any{"action": "example", "url": "example"}, nil)
+engagement.Create(map[string]any{"action": "example", "estimated_completion": "example", "quantity": 1}, nil)
 
 // engagement.Data() now returns the engagement data from the last create
 // engagement.Match() returns the last match criteria

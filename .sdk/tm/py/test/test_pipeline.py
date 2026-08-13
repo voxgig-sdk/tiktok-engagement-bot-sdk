@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import TiktokEngagementBotSDK
-from core.error import TiktokEngagementBotError
-from core.result import TiktokEngagementBotResult
-from core.response import TiktokEngagementBotResponse
-from core.spec import TiktokEngagementBotSpec
-from feature.base_feature import TiktokEngagementBotBaseFeature
+from projectname_sdk.core.error import TiktokEngagementBotError
+from projectname_sdk.core.result import TiktokEngagementBotResult
+from projectname_sdk.core.response import TiktokEngagementBotResponse
+from projectname_sdk.core.spec import TiktokEngagementBotSpec
+from projectname_sdk.feature.base_feature import TiktokEngagementBotBaseFeature
 
 
 def _client():

@@ -6,20 +6,18 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface Engagement {
-  action: string
-  data?: Record<string, any>
-  message?: string
+  action?: string
+  estimated_completion?: string
   quantity?: number
-  status?: string
-  url: string
+  request_id?: string
+  url?: string
 }
 
 export interface EngagementCreateData {
-  action: string
-  data?: Record<string, any>
-  message?: string
+  action?: string
+  estimated_completion?: string
   quantity?: number
-  status?: string
-  url: string
+  request_id?: string
+  url?: string
 }
 

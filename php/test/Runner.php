@@ -43,8 +43,8 @@ class TiktokEngagementBotTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('TIKTOKENGAGEMENTBOT_TEST_LIVE');
-        $override = self::getenv('TIKTOKENGAGEMENTBOT_TEST_OVERRIDE');
+        $live = self::getenv('TIKTOK_ENGAGEMENT_BOT_TEST_LIVE');
+        $override = self::getenv('TIKTOK_ENGAGEMENT_BOT_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class TiktokEngagementBotTestRunner
             }
         }
 
-        $explain = self::getenv('TIKTOKENGAGEMENTBOT_TEST_EXPLAIN');
+        $explain = self::getenv('TIKTOK_ENGAGEMENT_BOT_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['TIKTOKENGAGEMENTBOT_TEST_EXPLAIN'] = $explain;
+            $m['TIKTOK_ENGAGEMENT_BOT_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

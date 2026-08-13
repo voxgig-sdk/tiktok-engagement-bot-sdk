@@ -93,12 +93,21 @@ $engagement = $client->Engagement();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `action` | `string` | Yes |  |
-| `data` | `array` | No |  |
-| `message` | `string` | No |  |
+| `action` | `string` | No |  |
+| `estimated_completion` | `string` | No |  |
 | `quantity` | `int` | No |  |
-| `status` | `string` | No |  |
-| `url` | `string` | Yes |  |
+| `request_id` | `string` | No |  |
+| `url` | `string` | No |  |
+
+### Field Usage by Operation
+
+| Field | create |
+| --- | --- |
+| `action` | Yes |
+| `estimated_completion` | - |
+| `quantity` | - |
+| `request_id` | - |
+| `url` | Yes |
 
 ### Operations
 
@@ -108,8 +117,6 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->Engagement()->create([
-  "action" => null, // string
-  "url" => null, // string
 ]);
 ```
 

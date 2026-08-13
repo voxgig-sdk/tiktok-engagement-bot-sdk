@@ -42,8 +42,8 @@ client = TiktokEngagementBotSDK({
 ### 4. Create, update, and remove
 
 ```python
-# Create — returns the bare created record (a dict)
-created = client.Engagement().create({"action": "example_action", "url": "example_url"})
+# Create — returns the ENTITY (call data_get() for the record)
+created = client.Engagement().create({"action": "example_action", "estimated_completion": "example_estimated_completion"})
 
 ```
 
@@ -54,7 +54,7 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    engagement = client.Engagement().create({ "action": "example", "url": "example" })
+    engagement = client.Engagement().create({ "action": "example", "estimated_completion": "example", "quantity": 1 })
     print(engagement)
 except Exception as err:
     print(f"create failed: {err}")
@@ -121,8 +121,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = TiktokEngagementBotSDK.test()
 
-# Entity ops return the bare record and raise on error.
-engagement = client.Engagement().create({"action": "example", "url": "example"})
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+engagement = client.Engagement().create({"action": "example", "estimated_completion": "example", "quantity": 1})
 # engagement contains the mock response record
 ```
 
@@ -219,7 +220,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -242,10 +243,9 @@ On error, `ok` is `False` and `err` contains the error value.
 | Field | Description |
 | --- | --- |
 | `action` |  |
-| `data` |  |
-| `message` |  |
+| `estimated_completion` |  |
 | `quantity` |  |
-| `status` |  |
+| `request_id` |  |
 | `url` |  |
 
 Operations: Create.
@@ -272,18 +272,15 @@ Create an instance: `engagement = client.Engagement()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `action` | `str` |  |
-| `data` | `dict` |  |
-| `message` | `str` |  |
+| `estimated_completion` | `str` |  |
 | `quantity` | `int` |  |
-| `status` | `str` |  |
+| `request_id` | `str` |  |
 | `url` | `str` |  |
 
 #### Example: Create
 
 ```python
 engagement = client.Engagement().create({
-    "action": "example_action",  # str
-    "url": "example_url",  # str
 })
 ```
 
@@ -364,7 +361,7 @@ stores the returned data and match criteria internally.
 
 ```python
 engagement = client.Engagement()
-engagement.create({ "action": "example", "url": "example" })
+engagement.create({ "action": "example", "estimated_completion": "example", "quantity": 1 })
 
 # engagement.data_get() now returns the engagement data from the last create
 # engagement.match_get() returns the last match criteria

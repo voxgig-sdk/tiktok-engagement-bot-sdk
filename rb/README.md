@@ -35,8 +35,8 @@ client = TiktokEngagementBotSDK.new({
 ### 4. Create, update, and remove
 
 ```ruby
-# create returns the bare created Engagement record.
-created = client.Engagement.create({ "action" => "example_action", "url" => "example_url" })
+# create returns the ENTITY — call data_get for the created Engagement record.
+created = client.Engagement.create({ "action" => "example_action", "estimated_completion" => "example_estimated_completion" })
 
 ```
 
@@ -47,7 +47,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  engagement = client.Engagement.create({ "action" => "example", "url" => "example" })
+  engagement = client.Engagement.create({ "action" => "example", "estimated_completion" => "example", "quantity" => 1 })
 rescue => err
   warn "create failed: #{err}"
 end
@@ -115,8 +115,9 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = TiktokEngagementBotSDK.test
 
-# Entity ops return the bare mock record (raises on error).
-engagement = client.Engagement.create({ "action" => "example", "url" => "example" })
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+engagement = client.Engagement.create({ "action" => "example", "estimated_completion" => "example", "quantity" => 1 })
 puts engagement
 ```
 
@@ -235,10 +236,9 @@ returns a result `Hash` with these keys:
 | Field | Description |
 | --- | --- |
 | `action` |  |
-| `data` |  |
-| `message` |  |
+| `estimated_completion` |  |
 | `quantity` |  |
-| `status` |  |
+| `request_id` |  |
 | `url` |  |
 
 Operations: Create.
@@ -265,18 +265,15 @@ Create an instance: `engagement = client.Engagement`
 | Field | Type | Description |
 | --- | --- | --- |
 | `action` | `String` |  |
-| `data` | `Hash` |  |
-| `message` | `String` |  |
+| `estimated_completion` | `String` |  |
 | `quantity` | `Integer` |  |
-| `status` | `String` |  |
+| `request_id` | `String` |  |
 | `url` | `String` |  |
 
 #### Example: Create
 
 ```ruby
 engagement = client.Engagement.create({
-  "action" => "example_action", # String
-  "url" => "example_url", # String
 })
 ```
 
@@ -358,7 +355,7 @@ stores the returned data and match criteria internally.
 
 ```ruby
 engagement = client.Engagement
-engagement.create({ "action" => "example", "url" => "example" })
+engagement.create({ "action" => "example", "estimated_completion" => "example", "quantity" => 1 })
 
 # engagement.data_get now returns the engagement data from the last create
 # engagement.match_get returns the last match criteria

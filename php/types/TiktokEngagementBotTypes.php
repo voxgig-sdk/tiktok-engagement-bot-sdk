@@ -15,22 +15,20 @@ declare(strict_types=1);
 /** Engagement entity data model. */
 class Engagement
 {
-    public string $action;
-    public ?array $data = null;
-    public ?string $message = null;
+    public ?string $action = null;
+    public ?string $estimated_completion = null;
     public ?int $quantity = null;
-    public ?string $status = null;
-    public string $url;
+    public ?string $request_id = null;
+    public ?string $url = null;
 }
 
 /** Request payload for Engagement#create. */
 class EngagementCreateData
 {
-    public string $action;
-    public ?array $data = null;
-    public ?string $message = null;
+    public ?string $action = null;
+    public ?string $estimated_completion = null;
     public ?int $quantity = null;
-    public ?string $status = null;
-    public string $url;
+    public ?string $request_id = null;
+    public ?string $url = null;
 }
 

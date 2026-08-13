@@ -7,20 +7,18 @@
 -- edit by hand.
 
 ---@class Engagement
----@field action string
----@field data? table
----@field message? string
+---@field action? string
+---@field estimated_completion? string
 ---@field quantity? number
----@field status? string
----@field url string
+---@field request_id? string
+---@field url? string
 
 ---@class EngagementCreateData
----@field action string
----@field data? table
----@field message? string
+---@field action? string
+---@field estimated_completion? string
 ---@field quantity? number
----@field status? string
----@field url string
+---@field request_id? string
+---@field url? string
 
 local M = {}
 

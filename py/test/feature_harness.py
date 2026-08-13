@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import TiktokEngagementBotControl
-from core.error import TiktokEngagementBotError
-from core.result import TiktokEngagementBotResult
-from core.spec import TiktokEngagementBotSpec
+from tiktokengagementbot_sdk.config import make_config
+from tiktokengagementbot_sdk.features import _make_feature
+from tiktokengagementbot_sdk.core.control import TiktokEngagementBotControl
+from tiktokengagementbot_sdk.core.error import TiktokEngagementBotError
+from tiktokengagementbot_sdk.core.result import TiktokEngagementBotResult
+from tiktokengagementbot_sdk.core.spec import TiktokEngagementBotSpec
 
 
 # True when this SDK was generated with the named feature.

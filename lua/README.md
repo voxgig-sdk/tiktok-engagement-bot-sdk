@@ -39,7 +39,7 @@ local client = sdk.new({
 
 ```lua
 -- Create
-local created, err = client:Engagement():create({ action = "example_action", url = "example_url" })
+local created, err = client:Engagement():create({ action = "example_action", estimated_completion = "example_estimated_completion" })
 if err then error(err) end
 
 ```
@@ -51,7 +51,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local engagement, err = client:Engagement():create({ action = "example", url = "example" })
+local engagement, err = client:Engagement():create({ action = "example", estimated_completion = "example", quantity = 1 })
 if err then error(err) end
 ```
 
@@ -109,7 +109,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Engagement():create({ action = "example", url = "example" })
+local result, err = client:Engagement():create({ action = "example", estimated_completion = "example", quantity = 1 })
 -- result is the returned data; err is set on failure
 ```
 
@@ -217,9 +217,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local engagement, err = client:Engagement():load()
+    local engagement, err = client:Engagement():list()
     if err then error(err) end
-    -- engagement is the loaded record
+    -- engagement is the record list
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -231,10 +231,9 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | Field | Description |
 | --- | --- |
 | `action` |  |
-| `data` |  |
-| `message` |  |
+| `estimated_completion` |  |
 | `quantity` |  |
-| `status` |  |
+| `request_id` |  |
 | `url` |  |
 
 Operations: Create.
@@ -261,18 +260,15 @@ Create an instance: `local engagement = client:Engagement(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `action` | `string` |  |
-| `data` | `table` |  |
-| `message` | `string` |  |
+| `estimated_completion` | `string` |  |
 | `quantity` | `number` |  |
-| `status` | `string` |  |
+| `request_id` | `string` |  |
 | `url` | `string` |  |
 
 #### Example: Create
 
 ```lua
 local engagement, err = client:Engagement():create({
-  action = "example_action", -- string
-  url = "example_url", -- string
 })
 ```
 
@@ -354,7 +350,7 @@ stores the returned data and match criteria internally.
 
 ```lua
 local engagement = client:Engagement()
-engagement:create({ action = "example", url = "example" })
+engagement:create({ action = "example", estimated_completion = "example", quantity = 1 })
 
 -- engagement:data_get() now returns the engagement data from the last create
 -- engagement:match_get() returns the last match criteria

@@ -23,8 +23,8 @@ module TiktokEngagementBotTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("TIKTOKENGAGEMENTBOT_TEST_LIVE")
-    override = getenv("TIKTOKENGAGEMENTBOT_TEST_OVERRIDE")
+    live = getenv("TIKTOK_ENGAGEMENT_BOT_TEST_LIVE")
+    override = getenv("TIKTOK_ENGAGEMENT_BOT_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module TiktokEngagementBotTestRunner
       end
     end
 
-    explain = getenv("TIKTOKENGAGEMENTBOT_TEST_EXPLAIN")
-    m["TIKTOKENGAGEMENTBOT_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("TIKTOK_ENGAGEMENT_BOT_TEST_EXPLAIN")
+    m["TIKTOK_ENGAGEMENT_BOT_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

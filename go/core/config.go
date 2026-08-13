@@ -30,44 +30,49 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"active": true,
 						"name": "action",
-						"req": true,
+						"op": map[string]any{
+							"create": map[string]any{
+								"req": true,
+								"type": "`$STRING`",
+							},
+						},
+						"req": false,
 						"type": "`$STRING`",
 						"index$": 0,
 					},
 					map[string]any{
 						"active": true,
-						"name": "data",
-						"req": false,
-						"type": "`$OBJECT`",
-						"index$": 1,
-					},
-					map[string]any{
-						"active": true,
-						"name": "message",
+						"name": "estimated_completion",
 						"req": false,
 						"type": "`$STRING`",
-						"index$": 2,
+						"index$": 1,
 					},
 					map[string]any{
 						"active": true,
 						"name": "quantity",
 						"req": false,
 						"type": "`$INTEGER`",
+						"index$": 2,
+					},
+					map[string]any{
+						"active": true,
+						"name": "request_id",
+						"req": false,
+						"type": "`$STRING`",
 						"index$": 3,
 					},
 					map[string]any{
 						"active": true,
-						"name": "status",
+						"name": "url",
+						"op": map[string]any{
+							"create": map[string]any{
+								"req": true,
+								"type": "`$STRING`",
+							},
+						},
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 4,
-					},
-					map[string]any{
-						"active": true,
-						"name": "url",
-						"req": true,
-						"type": "`$STRING`",
-						"index$": 5,
 					},
 				},
 				"name": "engagement",
@@ -79,6 +84,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "POST",
 								"orig": "/api/engagement",
 								"parts": []any{
@@ -88,12 +94,11 @@ func MakeConfig() map[string]any {
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.data`",
 								},
 								"index$": 0,
 							},
 						},
-						"key$": "create",
 					},
 				},
 				"relations": map[string]any{
