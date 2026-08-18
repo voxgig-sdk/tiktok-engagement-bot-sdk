@@ -23,8 +23,8 @@ class TiktokEngagementBotSDK:
         utility = TiktokEngagementBotUtility()
         self._utility = utility
 
-        from tiktokengagementbot_sdk.config import make_config
-        config = make_config()
+        from tiktokengagementbot_sdk.config import shared_config
+        config = shared_config()
 
         self._rootctx = utility.make_context({
             "client": self,

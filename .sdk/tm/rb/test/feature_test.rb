@@ -15,7 +15,7 @@ require_relative "../TiktokEngagementBot_sdk"
 module TiktokEngagementBotFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = TiktokEngagementBotConfig.make_config["feature"]
+    f = TiktokEngagementBotConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

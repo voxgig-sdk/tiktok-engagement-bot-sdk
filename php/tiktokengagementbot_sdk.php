@@ -40,7 +40,7 @@ class TiktokEngagementBotSDK
         $utility = new TiktokEngagementBotUtility();
         $this->_utility = $utility;
 
-        $config = TiktokEngagementBotConfig::make_config();
+        $config = TiktokEngagementBotConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

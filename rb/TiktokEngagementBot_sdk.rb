@@ -28,7 +28,7 @@ class TiktokEngagementBotSDK
     utility = TiktokEngagementBotUtility.new
     @_utility = utility
 
-    config = TiktokEngagementBotConfig.make_config
+    config = TiktokEngagementBotConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

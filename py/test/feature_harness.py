@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from tiktokengagementbot_sdk.config import make_config
+from tiktokengagementbot_sdk.config import shared_config
 from tiktokengagementbot_sdk.features import _make_feature
 from tiktokengagementbot_sdk.core.control import TiktokEngagementBotControl
 from tiktokengagementbot_sdk.core.error import TiktokEngagementBotError
@@ -24,7 +24,7 @@ from tiktokengagementbot_sdk.core.spec import TiktokEngagementBotSpec
 
 # True when this SDK was generated with the named feature.
 def has_feature(name):
-    feature = make_config().get("feature")
+    feature = shared_config().get("feature")
     return isinstance(feature, dict) and feature.get(name) is not None
 
 

@@ -23,6 +23,7 @@ build = {
   modules = {
     ["tiktok-engagement-bot_sdk"] = "tiktok-engagement-bot_sdk.lua",
     ["config"] = "config.lua",
+    ["config_shared"] = "config_shared.lua",
     ["features"] = "features.lua",
   }
 }
