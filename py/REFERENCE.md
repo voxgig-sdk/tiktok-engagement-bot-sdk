@@ -88,11 +88,11 @@ engagement = client.Engagement()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `action` | `str` | No |  |
-| `estimated_completion` | `str` | No |  |
-| `quantity` | `int` | No |  |
-| `request_id` | `str` | No |  |
-| `url` | `str` | No |  |
+| `action` | `str` | No | Type of engagement requested |
+| `estimated_completion` | `str` | No | Estimated time to complete the request |
+| `quantity` | `int` | No | Number of engagements being processed |
+| `request_id` | `str` | No | Unique identifier for tracking the request |
+| `url` | `str` | No | Target TikTok URL |
 
 ### Field Usage by Operation
 

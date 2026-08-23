@@ -235,11 +235,11 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `action` |  |
-| `estimated_completion` |  |
-| `quantity` |  |
-| `request_id` |  |
-| `url` |  |
+| `action` | Type of engagement requested |
+| `estimated_completion` | Estimated time to complete the request |
+| `quantity` | Number of engagements being processed |
+| `request_id` | Unique identifier for tracking the request |
+| `url` | Target TikTok URL |
 
 Operations: Create.
 
@@ -264,11 +264,11 @@ Create an instance: `engagement = client.Engagement`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `action` | `String` |  |
-| `estimated_completion` | `String` |  |
-| `quantity` | `Integer` |  |
-| `request_id` | `String` |  |
-| `url` | `String` |  |
+| `action` | `String` | Type of engagement requested |
+| `estimated_completion` | `String` | Estimated time to complete the request |
+| `quantity` | `Integer` | Number of engagements being processed |
+| `request_id` | `String` | Unique identifier for tracking the request |
+| `url` | `String` | Target TikTok URL |
 
 #### Example: Create
 

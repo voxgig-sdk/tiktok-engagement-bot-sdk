@@ -33,6 +33,9 @@ class TiktokEngagementBotConfig
         return [
             "main" => [
                 "name" => "TiktokEngagementBot",
+                "slug" => "tiktok-engagement-bot",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
@@ -64,18 +67,22 @@ class TiktokEngagementBotConfig
                   'type' => '`$STRING`',
                 ],
               ],
+              'short' => 'Type of engagement requested',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'estimated_completion',
+              'short' => 'Estimated time to complete the request',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'quantity',
+              'short' => 'Number of engagements being processed',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'request_id',
+              'short' => 'Unique identifier for tracking the request',
               'type' => '`$STRING`',
             ],
             [
@@ -86,6 +93,7 @@ class TiktokEngagementBotConfig
                   'type' => '`$STRING`',
                 ],
               ],
+              'short' => 'Target TikTok URL',
               'type' => '`$STRING`',
             ],
           ],

@@ -42,24 +42,28 @@
                 }
               },
               "req": false,
+              "short": "Type of engagement requested",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "estimated_completion",
               "req": false,
+              "short": "Estimated time to complete the request",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "quantity",
               "req": false,
+              "short": "Number of engagements being processed",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "request_id",
               "req": false,
+              "short": "Unique identifier for tracking the request",
               "type": "`$STRING`"
             },
             {
@@ -72,6 +76,7 @@
                 }
               },
               "req": false,
+              "short": "Target TikTok URL",
               "type": "`$STRING`"
             }
           ],

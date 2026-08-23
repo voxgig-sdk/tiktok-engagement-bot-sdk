@@ -94,11 +94,11 @@ engagement = client.Engagement
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `action` | `String` | No |  |
-| `estimated_completion` | `String` | No |  |
-| `quantity` | `Integer` | No |  |
-| `request_id` | `String` | No |  |
-| `url` | `String` | No |  |
+| `action` | `String` | No | Type of engagement requested |
+| `estimated_completion` | `String` | No | Estimated time to complete the request |
+| `quantity` | `Integer` | No | Number of engagements being processed |
+| `request_id` | `String` | No | Unique identifier for tracking the request |
+| `url` | `String` | No | Target TikTok URL |
 
 ### Field Usage by Operation
 

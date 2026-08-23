@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "TiktokEngagementBot",
+			"slug": "tiktok-engagement-bot",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -42,18 +45,22 @@ func MakeConfig() map[string]any {
 								"type": "`$STRING`",
 							},
 						},
+						"short": "Type of engagement requested",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "estimated_completion",
+						"short": "Estimated time to complete the request",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "quantity",
+						"short": "Number of engagements being processed",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "request_id",
+						"short": "Unique identifier for tracking the request",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -64,6 +71,7 @@ func MakeConfig() map[string]any {
 								"type": "`$STRING`",
 							},
 						},
+						"short": "Target TikTok URL",
 						"type": "`$STRING`",
 					},
 				},

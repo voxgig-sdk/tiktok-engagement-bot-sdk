@@ -14,21 +14,25 @@ main: kit: entity: engagement: {
         }
       }
       req: false
+      short: "Type of engagement requested"
       type: "`$STRING`"
     }
     {
       name: "estimated_completion"
       req: false
+      short: "Estimated time to complete the request"
       type: "`$STRING`"
     }
     {
       name: "quantity"
       req: false
+      short: "Number of engagements being processed"
       type: "`$INTEGER`"
     }
     {
       name: "request_id"
       req: false
+      short: "Unique identifier for tracking the request"
       type: "`$STRING`"
     }
     {
@@ -40,6 +44,7 @@ main: kit: entity: engagement: {
         }
       }
       req: false
+      short: "Target TikTok URL"
       type: "`$STRING`"
     }
   ]

@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -289,11 +289,11 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `action` |  |
-| `estimated_completion` |  |
-| `quantity` |  |
-| `request_id` |  |
-| `url` |  |
+| `action` | Type of engagement requested |
+| `estimated_completion` | Estimated time to complete the request |
+| `quantity` | Number of engagements being processed |
+| `request_id` | Unique identifier for tracking the request |
+| `url` | Target TikTok URL |
 
 Operations: create.
 
@@ -318,11 +318,11 @@ Create an instance: `const engagement = client.Engagement()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `action` | `string` |  |
-| `estimated_completion` | `string` |  |
-| `quantity` | `number` |  |
-| `request_id` | `string` |  |
-| `url` | `string` |  |
+| `action` | `string` | Type of engagement requested |
+| `estimated_completion` | `string` | Estimated time to complete the request |
+| `quantity` | `number` | Number of engagements being processed |
+| `request_id` | `string` | Unique identifier for tracking the request |
+| `url` | `string` | Target TikTok URL |
 
 #### Example: Create
 

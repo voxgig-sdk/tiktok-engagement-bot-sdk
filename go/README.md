@@ -6,7 +6,7 @@ The Golang SDK for the TiktokEngagementBot API — an entity-oriented client usi
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Engagement(nil)` — each with the same small set of operations (`Create`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -263,11 +263,11 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"action"` |  |
-| `"estimated_completion"` |  |
-| `"quantity"` |  |
-| `"request_id"` |  |
-| `"url"` |  |
+| `"action"` | Type of engagement requested |
+| `"estimated_completion"` | Estimated time to complete the request |
+| `"quantity"` | Number of engagements being processed |
+| `"request_id"` | Unique identifier for tracking the request |
+| `"url"` | Target TikTok URL |
 
 Operations: Create.
 
@@ -292,11 +292,11 @@ Create an instance: `engagement := client.Engagement(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `action` | `string` |  |
-| `estimated_completion` | `string` |  |
-| `quantity` | `int` |  |
-| `request_id` | `string` |  |
-| `url` | `string` |  |
+| `action` | `string` | Type of engagement requested |
+| `estimated_completion` | `string` | Estimated time to complete the request |
+| `quantity` | `int` | Number of engagements being processed |
+| `request_id` | `string` | Unique identifier for tracking the request |
+| `url` | `string` | Target TikTok URL |
 
 #### Example: Create
 

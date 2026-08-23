@@ -245,11 +245,11 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `action` |  |
-| `estimated_completion` |  |
-| `quantity` |  |
-| `request_id` |  |
-| `url` |  |
+| `action` | Type of engagement requested |
+| `estimated_completion` | Estimated time to complete the request |
+| `quantity` | Number of engagements being processed |
+| `request_id` | Unique identifier for tracking the request |
+| `url` | Target TikTok URL |
 
 Operations: Create.
 
@@ -274,11 +274,11 @@ Create an instance: `$engagement = $client->Engagement();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `action` | `string` |  |
-| `estimated_completion` | `string` |  |
-| `quantity` | `int` |  |
-| `request_id` | `string` |  |
-| `url` | `string` |  |
+| `action` | `string` | Type of engagement requested |
+| `estimated_completion` | `string` | Estimated time to complete the request |
+| `quantity` | `int` | Number of engagements being processed |
+| `request_id` | `string` | Unique identifier for tracking the request |
+| `url` | `string` | Target TikTok URL |
 
 #### Example: Create
 

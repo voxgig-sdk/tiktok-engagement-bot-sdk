@@ -230,11 +230,11 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `action` |  |
-| `estimated_completion` |  |
-| `quantity` |  |
-| `request_id` |  |
-| `url` |  |
+| `action` | Type of engagement requested |
+| `estimated_completion` | Estimated time to complete the request |
+| `quantity` | Number of engagements being processed |
+| `request_id` | Unique identifier for tracking the request |
+| `url` | Target TikTok URL |
 
 Operations: Create.
 
@@ -259,11 +259,11 @@ Create an instance: `local engagement = client:Engagement(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `action` | `string` |  |
-| `estimated_completion` | `string` |  |
-| `quantity` | `number` |  |
-| `request_id` | `string` |  |
-| `url` | `string` |  |
+| `action` | `string` | Type of engagement requested |
+| `estimated_completion` | `string` | Estimated time to complete the request |
+| `quantity` | `number` | Number of engagements being processed |
+| `request_id` | `string` | Unique identifier for tracking the request |
+| `url` | `string` | Target TikTok URL |
 
 #### Example: Create
 

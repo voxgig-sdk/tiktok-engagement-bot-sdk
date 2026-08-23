@@ -242,11 +242,11 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `action` |  |
-| `estimated_completion` |  |
-| `quantity` |  |
-| `request_id` |  |
-| `url` |  |
+| `action` | Type of engagement requested |
+| `estimated_completion` | Estimated time to complete the request |
+| `quantity` | Number of engagements being processed |
+| `request_id` | Unique identifier for tracking the request |
+| `url` | Target TikTok URL |
 
 Operations: Create.
 
@@ -271,11 +271,11 @@ Create an instance: `engagement = client.Engagement()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `action` | `str` |  |
-| `estimated_completion` | `str` |  |
-| `quantity` | `int` |  |
-| `request_id` | `str` |  |
-| `url` | `str` |  |
+| `action` | `str` | Type of engagement requested |
+| `estimated_completion` | `str` | Estimated time to complete the request |
+| `quantity` | `int` | Number of engagements being processed |
+| `request_id` | `str` | Unique identifier for tracking the request |
+| `url` | `str` | Target TikTok URL |
 
 #### Example: Create
 

@@ -117,11 +117,11 @@ const engagement = client.Engagement()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `action` | `string` | No |  |
-| `estimated_completion` | `string` | No |  |
-| `quantity` | `number` | No |  |
-| `request_id` | `string` | No |  |
-| `url` | `string` | No |  |
+| `action` | `string` | No | Type of engagement requested |
+| `estimated_completion` | `string` | No | Estimated time to complete the request |
+| `quantity` | `number` | No | Number of engagements being processed |
+| `request_id` | `string` | No | Unique identifier for tracking the request |
+| `url` | `string` | No | Target TikTok URL |
 
 ### Field Usage by Operation
 
