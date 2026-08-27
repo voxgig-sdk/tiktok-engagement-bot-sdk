@@ -28,6 +28,7 @@ module TiktokEngagementBotConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
