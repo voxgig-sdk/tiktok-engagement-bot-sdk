@@ -87,6 +87,7 @@ class TiktokEngagementBotConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uri',
               'name' => 'url',
               'op' => [
                 'create' => [
@@ -109,14 +110,22 @@ class TiktokEngagementBotConfig
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/api/engagement',
-                  'parts' => [
-                    'api',
-                    'engagement',
+                  'segments' => [
+                    [
+                      'lit' => 'api',
+                    ],
+                    [
+                      'lit' => 'engagement',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'api',
+                    'engagement',
                   ],
                 ],
               ],

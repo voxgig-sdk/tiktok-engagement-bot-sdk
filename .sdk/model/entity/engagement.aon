@@ -36,6 +36,7 @@ main: kit: entity: engagement: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "url"
       op: {
         create: {
@@ -57,9 +58,13 @@ main: kit: entity: engagement: {
         {
           method: "POST"
           orig: "/api/engagement"
-          parts: [
-            "api"
-            "engagement"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "engagement"
+            }
           ]
           transform: {
             req: "`reqdata`"

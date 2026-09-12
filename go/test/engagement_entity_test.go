@@ -52,7 +52,7 @@ func TestEngagementEntity(t *testing.T) {
 		// CREATE
 		engagementRef01Ent := client.Engagement(nil)
 		engagementRef01Data := core.ToMapAny(vs.GetProp(
-			vs.GetPath([]any{"new", "engagement"}, setup.data), "engagement_ref01"))
+			vs.GetPath(setup.data, []any{"new", "engagement"}), "engagement_ref01"))
 
 		engagementRef01DataResult, err := engagementRef01Ent.Create(engagementRef01Data, nil)
 		if err != nil {
@@ -90,7 +90,7 @@ func engagementBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"engagement01", "engagement02", "engagement03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -110,7 +110,7 @@ func engagementBasicSetup(extra map[string]any) *entityTestSetup {
 		"TIKTOK_ENGAGEMENT_BOT_TEST_ENGAGEMENT_ENTID": idmap,
 		"TIKTOK_ENGAGEMENT_BOT_TEST_LIVE":      "FALSE",
 		"TIKTOK_ENGAGEMENT_BOT_TEST_EXPLAIN":   "FALSE",
-		"TIKTOK_ENGAGEMENT_BOT_APIKEY":         "NONE",
+		"TIKTOK_ENGAGEMENT_BOT_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["TIKTOK_ENGAGEMENT_BOT_TEST_ENGAGEMENT_ENTID"])
@@ -119,11 +119,23 @@ func engagementBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["TIKTOK_ENGAGEMENT_BOT_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["TIKTOK_ENGAGEMENT_BOT_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewTiktokEngagementBotSDK(core.ToMapAny(mergedOpts))
 	}

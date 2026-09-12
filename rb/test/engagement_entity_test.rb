@@ -76,7 +76,7 @@ def engagement_basic_setup(extra)
     "TIKTOK_ENGAGEMENT_BOT_TEST_ENGAGEMENT_ENTID" => idmap,
     "TIKTOK_ENGAGEMENT_BOT_TEST_LIVE" => "FALSE",
     "TIKTOK_ENGAGEMENT_BOT_TEST_EXPLAIN" => "FALSE",
-    "TIKTOK_ENGAGEMENT_BOT_APIKEY" => "NONE",
+    "TIKTOK_ENGAGEMENT_BOT_APIKEY" => "",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -87,6 +87,9 @@ def engagement_basic_setup(extra)
 
   if env["TIKTOK_ENGAGEMENT_BOT_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
+      # FIRST, so the generated fields below win: sdk-test-control.json's
+      # test.client.options adds to the live client, it does not redirect it.
+      Runner.live_client_options,
       {
         "apikey" => env["TIKTOK_ENGAGEMENT_BOT_APIKEY"],
       },
