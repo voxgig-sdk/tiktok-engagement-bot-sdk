@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { TiktokEngagementBotSDK } from '@voxgig-sdk/tiktok-engagement-bot'
+import { TiktokEngagementBotSDK } from '@voxgig-sdk/tiktok-engagement-bot-sdk'
 
 const client = new TiktokEngagementBotSDK({
   apikey: process.env.TIKTOK_ENGAGEMENT_BOT_APIKEY,
@@ -414,7 +414,7 @@ tiktok-engagement-bot/
 Import the SDK from the package root:
 
 ```ts
-import { TiktokEngagementBotSDK } from '@voxgig-sdk/tiktok-engagement-bot'
+import { TiktokEngagementBotSDK } from '@voxgig-sdk/tiktok-engagement-bot-sdk'
 ```
 
 ### Entity state

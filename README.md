@@ -109,7 +109,7 @@ local result, err = client:Engagement():create({ action = "example", estimated_c
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/tiktok-engagement-bot` | publish pending — [install from git tag](https://github.com/voxgig-sdk/tiktok-engagement-bot-sdk/releases) |
+| TypeScript | `@voxgig-sdk/tiktok-engagement-bot-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/tiktok-engagement-bot-sdk/releases) |
 | Python | `voxgig-sdk-tiktok-engagement-bot` | publish pending — [install from git tag](https://github.com/voxgig-sdk/tiktok-engagement-bot-sdk/releases) |
 | PHP | `voxgig-sdk/tiktok-engagement-bot` | publish pending — [install from git tag](https://github.com/voxgig-sdk/tiktok-engagement-bot-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/tiktok-engagement-bot-sdk/go` | `go get github.com/voxgig-sdk/tiktok-engagement-bot-sdk/go@latest` |
@@ -123,7 +123,7 @@ local result, err = client:Engagement():create({ action = "example", estimated_c
 ### TypeScript
 
 ```ts
-import { TiktokEngagementBotSDK } from '@voxgig-sdk/tiktok-engagement-bot'
+import { TiktokEngagementBotSDK } from '@voxgig-sdk/tiktok-engagement-bot-sdk'
 
 const client = new TiktokEngagementBotSDK({
   apikey: process.env.TIKTOK_ENGAGEMENT_BOT_APIKEY,
