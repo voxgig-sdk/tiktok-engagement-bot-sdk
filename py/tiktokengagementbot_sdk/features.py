@@ -1,12 +1,18 @@
 # TiktokEngagementBot SDK feature factory
 
 from tiktokengagementbot_sdk.feature.base_feature import TiktokEngagementBotBaseFeature
+from tiktokengagementbot_sdk.feature.ratelimit_feature import TiktokEngagementBotRatelimitFeature
+from tiktokengagementbot_sdk.feature.retry_feature import TiktokEngagementBotRetryFeature
 from tiktokengagementbot_sdk.feature.test_feature import TiktokEngagementBotTestFeature
+from tiktokengagementbot_sdk.feature.timeout_feature import TiktokEngagementBotTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: TiktokEngagementBotBaseFeature(),
+    "ratelimit": lambda: TiktokEngagementBotRatelimitFeature(),
+    "retry": lambda: TiktokEngagementBotRetryFeature(),
     "test": lambda: TiktokEngagementBotTestFeature(),
+    "timeout": lambda: TiktokEngagementBotTimeoutFeature(),
 }
 
 

@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { TiktokEngagementBotSDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('EngagementEntity', async () => {
 
     const live = 'TRUE' === process.env.TIKTOK_ENGAGEMENT_BOT_TEST_LIVE
     for (const op of ['create']) {
-      if (maybeSkipControl(t, 'entityOp', 'engagement.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'engagement.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set TIKTOK_ENGAGEMENT_BOT_TEST_ENGAGEMENT_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"action","op":{"create":{"req":true,"type":"`$STRING`"}},"req":false,"short":"Type of engagement requested","type":"`$STRING`","index$":0},{"active":true,"name":"estimated_completion","req":false,"short":"Estimated time to complete the request","type":"`$STRING`","index$":1},{"active":true,"name":"quantity","req":false,"short":"Number of engagements being processed","type":"`$INTEGER`","index$":2},{"active":true,"name":"request_id","req":false,"short":"Unique identifier for tracking the request","type":"`$STRING`","index$":3},{"active":true,"format":"uri","name":"url","op":{"create":{"req":true,"type":"`$STRING`"}},"req":false,"short":"Target TikTok URL","type":"`$STRING`","index$":4}],"name":"engagement","op":{"create":{"input":"data","name":"create","points":[{"active":true,"args":{},"contract":{"id":"POST /api/engagement","json":"{\"operationId\":\"boostEngagement\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"examples\":{\"followers\":{\"summary\":\"Request followers\",\"value\":{\"action\":\"followers\",\"quantity\":50,\"url\":\"https://www.tiktok.com/@username\"}},\"likes\":{\"summary\":\"Request likes\",\"value\":{\"action\":\"likes\",\"quantity\":100,\"url\":\"https://www.tiktok.com/@username/video/1234567890\"}},\"shares\":{\"summary\":\"Request shares\",\"value\":{\"action\":\"shares\",\"quantity\":25,\"url\":\"https://www.tiktok.com/@username/video/1234567890\"}},\"views\":{\"summary\":\"Request views\",\"value\":{\"action\":\"views\",\"quantity\":1000,\"url\":\"https://www.tiktok.com/@username/video/1234567890\"}}},\"schema\":{\"properties\":{\"action\":{\"description\":\"Type of engagement to boost\",\"enum\":[\"likes\",\"followers\",\"shares\",\"views\"],\"example\":\"likes\",\"type\":\"string\"},\"quantity\":{\"description\":\"Number of engagements to add (optional, defaults to maximum available)\",\"example\":100,\"maximum\":10000,\"minimum\":1,\"type\":\"integer\"},\"url\":{\"description\":\"TikTok profile URL or video URL to boost engagement\",\"example\":\"https://www.tiktok.com/@username/video/1234567890\",\"format\":\"uri\",\"type\":\"string\"}},\"required\":[\"url\",\"action\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"success\":{\"summary\":\"Successful response\",\"value\":{\"data\":{\"action\":\"likes\",\"estimated_completion\":\"2-5 minutes\",\"quantity\":100,\"url\":\"https://www.tiktok.com/@username/video/1234567890\"},\"message\":\"Engagement boost initiated\",\"status\":\"success\"}}},\"schema\":{\"properties\":{\"data\":{\"properties\":{\"action\":{\"description\":\"Type of engagement requested\",\"enum\":[\"likes\",\"followers\",\"shares\",\"views\"],\"example\":\"likes\",\"type\":\"string\"},\"estimated_completion\":{\"description\":\"Estimated time to complete the request\",\"example\":\"2-5 minutes\",\"type\":\"string\"},\"quantity\":{\"description\":\"Number of engagements being processed\",\"example\":100,\"type\":\"integer\"},\"request_id\":{\"description\":\"Unique identifier for tracking the request\",\"example\":\"req_abc123xyz\",\"type\":\"string\"},\"url\":{\"description\":\"Target TikTok URL\",\"example\":\"https://www.tiktok.com/@username/video/1234567890\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"message\":{\"description\":\"Human-readable message about the request\",\"example\":\"Engagement boost initiated\",\"type\":\"string\"},\"status\":{\"description\":\"Status of the engagement request\",\"enum\":[\"success\",\"pending\"],\"example\":\"success\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Engagement request successfully processed\"},\"400\":{\"content\":{\"application/json\":{\"examples\":{\"invalid_action\":{\"summary\":\"Invalid action type\",\"value\":{\"code\":\"INVALID_ACTION\",\"message\":\"Action must be one of: likes, followers, shares, views\",\"status\":\"error\"}},\"invalid_url\":{\"summary\":\"Invalid TikTok URL\",\"value\":{\"code\":\"INVALID_URL\",\"message\":\"Invalid TikTok URL provided\",\"status\":\"error\"}}},\"schema\":{\"properties\":{\"code\":{\"description\":\"Machine-readable error code\",\"example\":\"INVALID_URL\",\"type\":\"string\"},\"message\":{\"description\":\"Human-readable error message\",\"example\":\"Invalid TikTok URL provided\",\"type\":\"string\"},\"retry_after\":{\"description\":\"Seconds to wait before retrying (for rate limit errors)\",\"example\":300,\"type\":\"integer\"},\"status\":{\"description\":\"Error status indicator\",\"enum\":[\"error\"],\"example\":\"error\",\"type\":\"string\"}},\"required\":[\"status\",\"message\",\"code\"],\"type\":\"object\"}}},\"description\":\"Bad request - Invalid parameters\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"unauthorized\":{\"summary\":\"Missing authentication\",\"value\":{\"code\":\"UNAUTHORIZED\",\"message\":\"Valid session ID is required\",\"status\":\"error\"}}},\"schema\":{\"properties\":{\"code\":{\"description\":\"Machine-readable error code\",\"example\":\"INVALID_URL\",\"type\":\"string\"},\"message\":{\"description\":\"Human-readable error message\",\"example\":\"Invalid TikTok URL provided\",\"type\":\"string\"},\"retry_after\":{\"description\":\"Seconds to wait before retrying (for rate limit errors)\",\"example\":300,\"type\":\"integer\"},\"status\":{\"description\":\"Error status indicator\",\"enum\":[\"error\"],\"example\":\"error\",\"type\":\"string\"}},\"required\":[\"status\",\"message\",\"code\"],\"type\":\"object\"}}},\"description\":\"Unauthorized - Missing or invalid session ID\"},\"429\":{\"content\":{\"application/json\":{\"examples\":{\"rate_limit\":{\"summary\":\"Too many requests\",\"value\":{\"code\":\"RATE_LIMIT_EXCEEDED\",\"message\":\"Rate limit exceeded. Please try again later\",\"retry_after\":300,\"status\":\"error\"}}},\"schema\":{\"properties\":{\"code\":{\"description\":\"Machine-readable error code\",\"example\":\"INVALID_URL\",\"type\":\"string\"},\"message\":{\"description\":\"Human-readable error message\",\"example\":\"Invalid TikTok URL provided\",\"type\":\"string\"},\"retry_after\":{\"description\":\"Seconds to wait before retrying (for rate limit errors)\",\"example\":300,\"type\":\"integer\"},\"status\":{\"description\":\"Error status indicator\",\"enum\":[\"error\"],\"example\":\"error\",\"type\":\"string\"}},\"required\":[\"status\",\"message\",\"code\"],\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"},\"500\":{\"content\":{\"application/json\":{\"examples\":{\"server_error\":{\"summary\":\"Server error\",\"value\":{\"code\":\"INTERNAL_ERROR\",\"message\":\"An internal server error occurred\",\"status\":\"error\"}}},\"schema\":{\"properties\":{\"code\":{\"description\":\"Machine-readable error code\",\"example\":\"INVALID_URL\",\"type\":\"string\"},\"message\":{\"description\":\"Human-readable error message\",\"example\":\"Invalid TikTok URL provided\",\"type\":\"string\"},\"retry_after\":{\"description\":\"Seconds to wait before retrying (for rate limit errors)\",\"example\":300,\"type\":\"integer\"},\"status\":{\"description\":\"Error status indicator\",\"enum\":[\"error\"],\"example\":\"error\",\"type\":\"string\"}},\"required\":[\"status\",\"message\",\"code\"],\"type\":\"object\"}}},\"description\":\"Internal server error\"},\"503\":{\"content\":{\"application/json\":{\"examples\":{\"cloudflare\":{\"summary\":\"Cloudflare protection active\",\"value\":{\"code\":\"CLOUDFLARE_VERIFICATION_REQUIRED\",\"message\":\"Cloudflare verification required. Please update session cookies\",\"status\":\"error\"}}},\"schema\":{\"properties\":{\"code\":{\"description\":\"Machine-readable error code\",\"example\":\"INVALID_URL\",\"type\":\"string\"},\"message\":{\"description\":\"Human-readable error message\",\"example\":\"Invalid TikTok URL provided\",\"type\":\"string\"},\"retry_after\":{\"description\":\"Seconds to wait before retrying (for rate limit errors)\",\"example\":300,\"type\":\"integer\"},\"status\":{\"description\":\"Error status indicator\",\"enum\":[\"error\"],\"example\":\"error\",\"type\":\"string\"}},\"required\":[\"status\",\"message\",\"code\"],\"type\":\"object\"}}},\"description\":\"Service unavailable - Cloudflare verification required\"}},\"security\":[{\"sessionId\":[]},{\"cloudflare\":[]}],\"securitySchemes\":{\"cloudflare\":{\"description\":\"Cloudflare clearance cookie required for bypassing Cloudflare protection. Can be found in browser cookies under the cookies tab on zefoy.com\",\"in\":\"cookie\",\"name\":\"cf_clearance\",\"type\":\"apiKey\"},\"sessionId\":{\"description\":\"Session ID cookie obtained from zefoy.com. Can be found in browser cookies under the cookies tab on zefoy.com\",\"in\":\"cookie\",\"name\":\"PHPSESSID\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}","source":"openapi3","version":1},"kind":"http","method":"POST","orig":"/api/engagement","segments":[{"lit":"api"},{"lit":"engagement"}],"select":{},"transform":{"req":"`reqdata`","res":"`body.data`"},"index$":0}],"key$":"create"}},"relations":{"ancestors":[]},"key$":"engagement","name__orig":"engagement","Name":"Engagement","name_":"engagement","name-":"engagement","NAME":"ENGAGEMENT","index$":0}, {"active":true,"entity":"engagement","key$":"BasicEngagementFlow","kind":"basic","name":"BasicEngagementFlow","param":{},"step":[{"active":true,"data":{},"input":{"ref":"engagement_ref01"},"match":{},"op":"create","spec":[],"valid":[],"index$":0}]}, 'Engagement')
     }
     const client = setup.client
     const struct = setup.struct
@@ -109,13 +108,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['TIKTOK_ENGAGEMENT_BOT_TEST_ENGAGEMENT_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'TIKTOK_ENGAGEMENT_BOT_TEST_ENGAGEMENT_ENTID': idmap,
     'TIKTOK_ENGAGEMENT_BOT_TEST_LIVE': 'FALSE',
@@ -127,7 +119,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.TIKTOK_ENGAGEMENT_BOT_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['TIKTOK_ENGAGEMENT_BOT_TEST_ENGAGEMENT_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new TiktokEngagementBotSDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -140,7 +138,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -153,7 +152,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.TIKTOK_ENGAGEMENT_BOT_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 
