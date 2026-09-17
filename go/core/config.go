@@ -81,6 +81,8 @@ func MakeConfig() map[string]any {
 			"base": "https://zefoy.com",
 			"auth": map[string]any{
 				"prefix": "",
+				"in": "cookie",
+				"name": "PHPSESSID",
 			},
 			"headers": map[string]any{
 				"content-type": "application/json",

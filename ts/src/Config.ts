@@ -123,6 +123,8 @@ class Config {
 
     auth: {
       prefix: '',
+      in: 'cookie',
+      name: 'PHPSESSID',
     },
 
     headers: {
@@ -131,9 +133,9 @@ class Config {
 
     entity: {
       
-      engagement: {
-      },
-
+        engagement: {
+        },
+  
     }
   }
 

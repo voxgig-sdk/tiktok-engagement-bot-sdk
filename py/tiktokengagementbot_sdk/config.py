@@ -106,6 +106,8 @@ def make_config():
             "base": "https://zefoy.com",
             "auth": {
                 "prefix": "",
+                "in": "cookie",
+                "name": "PHPSESSID",
             },
             "headers": {
         "content-type": "application/json",

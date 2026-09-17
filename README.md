@@ -109,12 +109,12 @@ local result, err = client:Engagement():create({ action = "example", estimated_c
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/tiktok-engagement-bot-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/tiktok-engagement-bot-sdk/releases) |
-| Python | `voxgig-sdk-tiktok-engagement-bot` | publish pending — [install from git tag](https://github.com/voxgig-sdk/tiktok-engagement-bot-sdk/releases) |
-| PHP | `voxgig-sdk/tiktok-engagement-bot` | publish pending — [install from git tag](https://github.com/voxgig-sdk/tiktok-engagement-bot-sdk/releases) |
+| TypeScript | `@voxgig-sdk/tiktok-engagement-bot-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/tiktok-engagement-bot-sdk/tags) |
+| Python | `voxgig-sdk-tiktok-engagement-bot` | publish pending — [install from git tag](https://github.com/voxgig-sdk/tiktok-engagement-bot-sdk/tags) |
+| PHP | `voxgig-sdk/tiktok-engagement-bot` | publish pending — [install from git tag](https://github.com/voxgig-sdk/tiktok-engagement-bot-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/tiktok-engagement-bot-sdk/go` | `go get github.com/voxgig-sdk/tiktok-engagement-bot-sdk/go@latest` |
-| Ruby | `voxgig-sdk-tiktok-engagement-bot` | publish pending — [install from git tag](https://github.com/voxgig-sdk/tiktok-engagement-bot-sdk/releases) |
-| Lua | `voxgig-sdk-tiktok-engagement-bot` | publish pending — [install from git tag](https://github.com/voxgig-sdk/tiktok-engagement-bot-sdk/releases) |
+| Ruby | `voxgig-sdk-tiktok-engagement-bot` | publish pending — [install from git tag](https://github.com/voxgig-sdk/tiktok-engagement-bot-sdk/tags) |
+| Lua | `voxgig-sdk-tiktok-engagement-bot` | publish pending — [install from git tag](https://github.com/voxgig-sdk/tiktok-engagement-bot-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/tiktok-engagement-bot-sdk/go-cli` | `go install github.com/voxgig-sdk/tiktok-engagement-bot-sdk/go-cli/cmd/tiktok-engagement-bot@latest` |
 | Go MCP server | `github.com/voxgig-sdk/tiktok-engagement-bot-sdk/go-mcp` | `go get github.com/voxgig-sdk/tiktok-engagement-bot-sdk/go-mcp@latest` |
 
