@@ -96,6 +96,8 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "action",
+						"title": "Action",
+						"type": "`$STRING`",
 						"op": map[string]any{
 							"create": map[string]any{
 								"req": true,
@@ -103,26 +105,29 @@ func MakeConfig() map[string]any {
 							},
 						},
 						"short": "Type of engagement requested",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "estimated_completion",
-						"short": "Estimated time to complete the request",
+						"title": "Estimated Completion",
 						"type": "`$STRING`",
+						"short": "Estimated time to complete the request",
 					},
 					map[string]any{
 						"name": "quantity",
-						"short": "Number of engagements being processed",
+						"title": "Quantity",
 						"type": "`$INTEGER`",
+						"short": "Number of engagements being processed",
 					},
 					map[string]any{
 						"name": "request_id",
-						"short": "Unique identifier for tracking the request",
+						"title": "Request Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier for tracking the request",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "url",
+						"title": "Url",
+						"type": "`$STRING`",
 						"op": map[string]any{
 							"create": map[string]any{
 								"req": true,
@@ -130,7 +135,7 @@ func MakeConfig() map[string]any {
 							},
 						},
 						"short": "Target TikTok URL",
-						"type": "`$STRING`",
+						"format": "uri",
 					},
 				},
 				"name": "engagement",
@@ -140,7 +145,6 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/api/engagement",
@@ -152,15 +156,17 @@ func MakeConfig() map[string]any {
 										"lit": "engagement",
 									},
 								},
-								"select": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
 								"parts": []any{
 									"api",
 									"engagement",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},

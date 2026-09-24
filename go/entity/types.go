@@ -1,7 +1,7 @@
 // Typed models for the TiktokEngagementBot SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,11 +14,6 @@ import (
 
 // Engagement is the typed data model for the engagement entity.
 type Engagement struct {
-	Action *string `json:"action,omitempty"`
-	EstimatedCompletion *string `json:"estimated_completion,omitempty"`
-	Quantity *int `json:"quantity,omitempty"`
-	RequestId *string `json:"request_id,omitempty"`
-	Url *string `json:"url,omitempty"`
 }
 
 // EngagementCreateData is the typed request payload for Engagement.CreateTyped.

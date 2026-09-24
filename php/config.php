@@ -118,6 +118,8 @@ class TiktokEngagementBotConfig
           'fields' => [
             [
               'name' => 'action',
+              'title' => 'Action',
+              'type' => '`$STRING`',
               'op' => [
                 'create' => [
                   'req' => true,
@@ -125,26 +127,29 @@ class TiktokEngagementBotConfig
                 ],
               ],
               'short' => 'Type of engagement requested',
-              'type' => '`$STRING`',
             ],
             [
               'name' => 'estimated_completion',
-              'short' => 'Estimated time to complete the request',
+              'title' => 'Estimated Completion',
               'type' => '`$STRING`',
+              'short' => 'Estimated time to complete the request',
             ],
             [
               'name' => 'quantity',
-              'short' => 'Number of engagements being processed',
+              'title' => 'Quantity',
               'type' => '`$INTEGER`',
+              'short' => 'Number of engagements being processed',
             ],
             [
               'name' => 'request_id',
-              'short' => 'Unique identifier for tracking the request',
+              'title' => 'Request Id',
               'type' => '`$STRING`',
+              'short' => 'Unique identifier for tracking the request',
             ],
             [
-              'format' => 'uri',
               'name' => 'url',
+              'title' => 'Url',
+              'type' => '`$STRING`',
               'op' => [
                 'create' => [
                   'req' => true,
@@ -152,7 +157,7 @@ class TiktokEngagementBotConfig
                 ],
               ],
               'short' => 'Target TikTok URL',
-              'type' => '`$STRING`',
+              'format' => 'uri',
             ],
           ],
           'name' => 'engagement',
@@ -162,7 +167,6 @@ class TiktokEngagementBotConfig
               'name' => 'create',
               'points' => [
                 [
-                  'args' => [],
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/api/engagement',
@@ -174,15 +178,17 @@ class TiktokEngagementBotConfig
                       'lit' => 'engagement',
                     ],
                   ],
-                  'select' => [],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body.data`',
-                  ],
                   'parts' => [
                     'api',
                     'engagement',
                   ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body.data`',
+                  ],
+                  'args' => [],
+                  'select' => [],
                 ],
               ],
             ],

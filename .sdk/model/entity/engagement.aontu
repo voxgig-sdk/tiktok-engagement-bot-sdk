@@ -1,0 +1,90 @@
+# Entity: engagement
+
+main: kit: entity: engagement: {
+
+  alias: field: {}
+
+  fields: {
+    action: {
+      h: "Action"
+      n: "action"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      r: false
+      sh: "Type of engagement requested"
+      t: "`$STRING`"
+    }
+    estimated_completion: {
+      h: "Estimated Completion"
+      n: "estimated_completion"
+      r: false
+      sh: "Estimated time to complete the request"
+      t: "`$STRING`"
+    }
+    quantity: {
+      h: "Quantity"
+      n: "quantity"
+      r: false
+      sh: "Number of engagements being processed"
+      t: "`$INTEGER`"
+    }
+    request_id: {
+      h: "Request Id"
+      n: "request_id"
+      r: false
+      sh: "Unique identifier for tracking the request"
+      t: "`$STRING`"
+    }
+    url: {
+      fo: "uri"
+      h: "Url"
+      n: "url"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      r: false
+      sh: "Target TikTok URL"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "engagement"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /api/engagement"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/engagement"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "engagement"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
