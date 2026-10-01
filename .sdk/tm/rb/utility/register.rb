@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 TiktokEngagementBotUtility.registrar = ->(u) {
   u.clean = TiktokEngagementBotUtilities::Clean
+  u.clean_add = TiktokEngagementBotUtilities::CleanAdd
+  u.clean_explain = TiktokEngagementBotUtilities::CleanExplain
   u.done = TiktokEngagementBotUtilities::Done
   u.make_error = TiktokEngagementBotUtilities::MakeError
   u.feature_add = TiktokEngagementBotUtilities::FeatureAdd

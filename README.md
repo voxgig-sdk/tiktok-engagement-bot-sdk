@@ -14,7 +14,7 @@ Metadata kindly supplied by [www.freepublicapis.com](https://www.freepublicapis.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI with an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
 
-> **Features:** `undefined`, `undefined`, `undefined`, `undefined` — opt-in,
+> **Features:** `ratelimit`, `retry`, `test`, `timeout` — opt-in,
 > inactive until switched on, and configured per client. See the Features
 > section of any SDK README below for what each one does.
 
@@ -109,12 +109,12 @@ local result, err = client:Engagement():create({ action = "example", estimated_c
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/tiktok-engagement-bot-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/tiktok-engagement-bot-sdk/tags) |
-| Python | `voxgig-sdk-tiktok-engagement-bot-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/tiktok-engagement-bot-sdk/tags) |
-| PHP | `voxgig-sdk/tiktok-engagement-bot-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/tiktok-engagement-bot-sdk/tags) |
+| TypeScript | `@voxgig-sdk/tiktok-engagement-bot-sdk` | publish pending — [install from source](ts/README.md#install) |
+| Python | `voxgig-sdk-tiktok-engagement-bot-sdk` | publish pending — [install from source](py/README.md#install) |
+| PHP | `voxgig-sdk/tiktok-engagement-bot-sdk` | publish pending — [install from source](php/README.md#install) |
 | Golang | `github.com/voxgig-sdk/tiktok-engagement-bot-sdk/go` | `go get github.com/voxgig-sdk/tiktok-engagement-bot-sdk/go@latest` |
-| Ruby | `voxgig-sdk-tiktok-engagement-bot-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/tiktok-engagement-bot-sdk/tags) |
-| Lua | `voxgig-sdk-tiktok-engagement-bot-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/tiktok-engagement-bot-sdk/tags) |
+| Ruby | `voxgig-sdk-tiktok-engagement-bot-sdk` | publish pending — [install from source](rb/README.md#install) |
+| Lua | `voxgig-sdk-tiktok-engagement-bot-sdk` | publish pending — [install from source](lua/README.md#install) |
 | Go CLI | `github.com/voxgig-sdk/tiktok-engagement-bot-sdk/go-cli` | `go install github.com/voxgig-sdk/tiktok-engagement-bot-sdk/go-cli/cmd/tiktok-engagement-bot@latest` |
 | Go MCP server | `github.com/voxgig-sdk/tiktok-engagement-bot-sdk/go-mcp` | `go get github.com/voxgig-sdk/tiktok-engagement-bot-sdk/go-mcp@latest` |
 

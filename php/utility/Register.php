@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 TiktokEngagementBotUtility::setRegistrar(function (TiktokEngagementBotUtility $u): void {
     $u->clean = [TiktokEngagementBotClean::class, 'call'];
+    $u->clean_add = [TiktokEngagementBotClean::class, 'add'];
+    $u->clean_explain = [TiktokEngagementBotDone::class, 'clean_explain'];
     $u->done = [TiktokEngagementBotDone::class, 'call'];
     $u->make_error = [TiktokEngagementBotMakeError::class, 'call'];
     $u->feature_add = [TiktokEngagementBotFeatureAdd::class, 'call'];

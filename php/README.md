@@ -12,9 +12,14 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `$
 
 ## Install
 This package is not yet published to Packagist. Install it from the
-GitHub release tag (`php/vX.Y.Z`):
+GitHub release tag (`php/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/tiktok-engagement-bot-sdk/releases)), or
+from a clone as a Composer path repository:
 
-- Releases: [https://github.com/voxgig-sdk/tiktok-engagement-bot-sdk/releases](https://github.com/voxgig-sdk/tiktok-engagement-bot-sdk/releases)
+```bash
+git clone https://github.com/voxgig-sdk/tiktok-engagement-bot-sdk
+composer config repositories.tiktok-engagement-bot-sdk path ./tiktok-engagement-bot-sdk/php
+composer require voxgig-sdk/tiktok-engagement-bot-sdk:@dev
+```
 
 
 ## Tutorial: your first API call
