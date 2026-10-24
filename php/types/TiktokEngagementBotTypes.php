@@ -25,10 +25,8 @@ class Engagement
 /** Request payload for Engagement#create. */
 class EngagementCreateData
 {
-    public ?string $action = null;
-    public ?string $estimated_completion = null;
+    public string $action;
     public ?int $quantity = null;
-    public ?string $request_id = null;
-    public ?string $url = null;
+    public string $url;
 }
 

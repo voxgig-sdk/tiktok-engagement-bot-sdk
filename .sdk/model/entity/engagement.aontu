@@ -61,6 +61,11 @@ main: kit: entity: engagement: {
       name: "create"
       points: [
         {
+          bf: [
+            "action"
+            "quantity"
+            "url"
+          ]
           co: {
             id: "POST /api/engagement"
             source: "openapi3"
@@ -68,6 +73,10 @@ main: kit: entity: engagement: {
           }
           m: "POST"
           o: "/api/engagement"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "api"

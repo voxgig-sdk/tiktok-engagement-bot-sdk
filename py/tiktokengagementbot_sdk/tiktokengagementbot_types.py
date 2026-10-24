@@ -24,9 +24,10 @@ class Engagement(TypedDict, total=False):
     url: str
 
 
-class EngagementCreateData(TypedDict, total=False):
+class EngagementCreateDataRequired(TypedDict):
     action: str
-    estimated_completion: str
-    quantity: int
-    request_id: str
     url: str
+
+
+class EngagementCreateData(EngagementCreateDataRequired, total=False):
+    quantity: int

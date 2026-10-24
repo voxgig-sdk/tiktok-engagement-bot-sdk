@@ -36,24 +36,16 @@ Engagement = Struct.new(
 # Request payload for Engagement#create.
 #
 # @!attribute [rw] action
-#   @return [String, nil]
-#
-# @!attribute [rw] estimated_completion
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] quantity
 #   @return [Integer, nil]
 #
-# @!attribute [rw] request_id
-#   @return [String, nil]
-#
 # @!attribute [rw] url
-#   @return [String, nil]
+#   @return [String]
 EngagementCreateData = Struct.new(
   :action,
-  :estimated_completion,
   :quantity,
-  :request_id,
   :url,
   keyword_init: true
 )

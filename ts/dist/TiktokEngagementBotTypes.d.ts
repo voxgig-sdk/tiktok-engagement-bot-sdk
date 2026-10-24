@@ -6,9 +6,7 @@ export interface Engagement {
     url?: string;
 }
 export interface EngagementCreateData {
-    action?: string;
-    estimated_completion?: string;
+    action: string;
     quantity?: number;
-    request_id?: string;
-    url?: string;
+    url: string;
 }

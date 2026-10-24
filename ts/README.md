@@ -15,7 +15,7 @@ predictable and low-friction for both humans and AI agents.
 
 ## Install
 This package is not yet published to npm. Install it from the GitHub
-release tag (`ts/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/tiktok-engagement-bot-sdk/releases)), or from a
+release tag (`ts/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/tiktok-engagement-bot-sdk/tags)), or from a
 clone, which carries the compiled `dist/`:
 
 ```bash
@@ -27,7 +27,7 @@ npm install ./tiktok-engagement-bot-sdk/ts
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
-loading a specific record.
+loading a specific record. The client sends the API key as the `PHPSESSID` cookie.
 
 ### 1. Create a client
 
@@ -45,7 +45,7 @@ const client = new TiktokEngagementBotSDK({
 // Create — returns the created Engagement ENTITY (.data() for the record)
 const created = await client.Engagement().create({
   action: 'example_action',
-  estimated_completion: 'example_estimated_completion',
+  url: 'example_url',
 })
 
 ```
@@ -57,15 +57,16 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const engagement = await client.Engagement().create({ action: "example", estimated_completion: "example", quantity: 1 })
-  console.log(engagement)
+  const engagement = await client.Engagement().create({ action: "example", url: "example" })
+  console.log(engagement.data())
 } catch (err) {
   console.error('create failed:', err)
 }
 ```
 
 The low-level `direct()` method does **not** throw — it returns the
-value or an `Error`, so check the result before using it:
+result envelope. Branch on `ok`; on failure `status` holds the HTTP status
+(for error responses) and `err` holds the error:
 
 ```ts
 const result = await client.direct({
@@ -74,8 +75,8 @@ const result = await client.direct({
   params: { id: 'example_id' },
 })
 
-if (result instanceof Error) {
-  throw result
+if (!result.ok) {
+  console.error('request failed:', result.status, result.err)
 }
 ```
 
@@ -93,9 +94,6 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
-if (result instanceof Error) {
-  throw result
-}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -124,10 +122,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = TiktokEngagementBotSDK.test()
 
-const engagement = await client.Engagement().create({ action: 'example_action', estimated_completion: 'example_estimated_completion', quantity: 1 })
-// engagement is the entity, populated with mock response data
-// — call engagement.data() for the record itself
-console.log(engagement)
+const engagement = await client.Engagement().create({ action: 'example_action', url: 'example_url' })
+// engagement is the Engagement entity; .data() reads its mock record
+console.log(engagement.data())
 ```
 
 You can also use the instance method:
@@ -145,7 +142,7 @@ Entity instances remember their last match and data:
 const entity = client.Engagement()
 
 // First call runs the operation and stores its result
-await entity.create({ action: 'example_action', estimated_completion: 'example_estimated_completion', quantity: 1 })
+await entity.create({ action: 'example_action', url: 'example_url' })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -246,7 +243,7 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity, and return it. |
 | `data` | `data(data?: Partial<Entity>): Entity` | Get or set entity data. |
 | `match` | `match(match?: Partial<Entity>): Partial<Entity>` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
@@ -255,8 +252,8 @@ All entities share the same interface.
 
 #### Return values
 
-Entity operations resolve to the entity data directly — there is no
-result envelope:
+Entity operations resolve to the entity itself — there is no result
+envelope, and an entity's `data()` reads its record:
 
 - `create` resolves to a single entity object.
 
@@ -337,6 +334,8 @@ Create an instance: `const engagement = client.Engagement()`
 
 ```ts
 const engagement = await client.Engagement().create({
+  action: 'example_action',
+  url: 'example_url',
 })
 ```
 
@@ -495,7 +494,7 @@ calls on the same instance can rely on this state.
 
 ```ts
 const engagement = client.Engagement()
-await engagement.create({ action: "example", estimated_completion: "example", quantity: 1 })
+await engagement.create({ action: "example", url: "example" })
 
 // engagement.data() now returns the engagement data from the last `create`
 // engagement.match() returns the last match criteria

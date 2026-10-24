@@ -3,5 +3,19 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "Cloudflare clearance cookie required for bypassing Cloudflare protection. Can be found in browser cookies under the cookies tab on zefoy.com",
+      "Engagement request successfully processed",
+      "Estimated time to complete the request",
+      "Number of engagements being processed",
+      "Session ID cookie obtained from zefoy.com. Can be found in browser cookies under the cookies tab on zefoy.com",
+      "Target TikTok URL",
+      "The Zefoy API allows users to automate interactions on TikTok, providing tools for gaining likes, followers, shares, and views quickly. It is designed to help increase engagement metrics for TikTok accounts through bot-managed activities, making it a useful resource for users looking to boost their social media presence on the platform.",
+      "Type of engagement requested",
+      "Unique identifier for tracking the request",
+      "Zefoy API Server"
+    ]
+  }
 }

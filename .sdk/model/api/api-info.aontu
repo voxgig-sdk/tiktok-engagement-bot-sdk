@@ -13,6 +13,17 @@ main: {
         url: "https://opensource.org/licenses/MIT"
       }
       security: {
+        alternatives: [
+          [
+            {
+              in: "cookie"
+              name: "cf_clearance"
+              prefix: ""
+              scheme: "cloudflare"
+              type: "apiKey"
+            }
+          ]
+        ]
         in: "cookie"
         name: "PHPSESSID"
         prefix: ""

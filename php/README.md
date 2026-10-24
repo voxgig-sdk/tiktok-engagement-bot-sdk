@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `$
 
 ## Install
 This package is not yet published to Packagist. Install it from the
-GitHub release tag (`php/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/tiktok-engagement-bot-sdk/releases)), or
+GitHub release tag (`php/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/tiktok-engagement-bot-sdk/tags)), or
 from a clone as a Composer path repository:
 
 ```bash
@@ -25,7 +25,7 @@ composer require voxgig-sdk/tiktok-engagement-bot-sdk:@dev
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
-loading a specific record.
+loading a specific record. The client sends the API key as the `PHPSESSID` cookie.
 
 ### 1. Create a client
 
@@ -42,7 +42,7 @@ $client = new TiktokEngagementBotSDK([
 
 ```php
 // create() returns the ENTITY — call data_get() for the created Engagement record.
-$created = $client->Engagement()->create(["action" => "example_action", "estimated_completion" => "example_estimated_completion"]);
+$created = $client->Engagement()->create(["action" => "example_action", "url" => "example_url"]);
 
 ```
 
@@ -54,7 +54,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $engagement = $client->Engagement()->create(["action" => "example", "estimated_completion" => "example", "quantity" => 1]);
+    $engagement = $client->Engagement()->create(["action" => "example", "url" => "example"]);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -128,7 +128,7 @@ $client = TiktokEngagementBotSDK::test();
 
 // Entity ops return the ENTITY (throws on error);
 // call data_get() for the mock record.
-$engagement = $client->Engagement()->create(["action" => "example", "estimated_completion" => "example", "quantity" => 1]);
+$engagement = $client->Engagement()->create(["action" => "example", "url" => "example"]);
 print_r($engagement->data_get());
 ```
 
@@ -218,7 +218,7 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `create` | `($reqdata, $ctrl): array` | Create a new entity. |
+| `create` | `($reqdata, $ctrl): mixed` | Create a new entity, and return it. |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -228,9 +228,9 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
-ops, a `list` for `list`) and throw on error. Wrap calls in
-`try`/`catch` to handle failures.
+Entity operations return the entity, and `list` an `array` of entities, one
+per record; an entity's `data_get()` reads its record (an `array`). They
+throw on error, so wrap calls in `try`/`catch` to handle failures.
 
 The `direct()` escape hatch never throws — it returns a result `array`
 you branch on via `$result["ok"]`:
@@ -289,6 +289,8 @@ Create an instance: `$engagement = $client->Engagement();`
 
 ```php
 $engagement = $client->Engagement()->create([
+    "action" => null, // string
+    "url" => null, // string
 ]);
 ```
 
@@ -455,7 +457,7 @@ stores the returned data and match criteria internally.
 
 ```php
 $engagement = $client->Engagement();
-$engagement->create(["action" => "example", "estimated_completion" => "example", "quantity" => 1]);
+$engagement->create(["action" => "example", "url" => "example"]);
 
 // $engagement->data_get() now returns the engagement data from the last create
 // $engagement->match_get() returns the last match criteria

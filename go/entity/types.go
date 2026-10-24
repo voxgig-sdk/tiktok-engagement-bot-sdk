@@ -18,11 +18,9 @@ type Engagement struct {
 
 // EngagementCreateData is the typed request payload for Engagement.CreateTyped.
 type EngagementCreateData struct {
-	Action *string `json:"action,omitempty"`
-	EstimatedCompletion *string `json:"estimated_completion,omitempty"`
+	Action string `json:"action"`
 	Quantity *int `json:"quantity,omitempty"`
-	RequestId *string `json:"request_id,omitempty"`
-	Url *string `json:"url,omitempty"`
+	Url string `json:"url"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the
